@@ -52,7 +52,7 @@ public class VistaPrincipal extends JFrame {
 		contentPane.setBackground(new Color(255, 186, 107));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null); //Para centrar
 
 		JPanel panel_titulo = new JPanel();
 		panel_titulo.setBackground(new Color(255, 220, 138));
@@ -82,6 +82,7 @@ public class VistaPrincipal extends JFrame {
 		btnConfiguracion.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnConfiguracion.addActionListener(getControlador());
 		btnConfiguracion.setIcon(imgBtnConfiguracion);
+		
 		btnNuevoConsumo = new JButton("Consumo");
 		btnNuevoConsumo.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnNuevoConsumo.addActionListener(getControlador());
@@ -100,26 +101,25 @@ public class VistaPrincipal extends JFrame {
 						.addComponent(btnConfiguracion, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 				.addGap(5).addComponent(panelVistas, GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE))
 				.addComponent(panel_titulo, GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-						.addComponent(panel_titulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(66)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup().addGap(27)
-										.addComponent(btnNuevoConsumo, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(btnProductos, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(btnProveedores, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(btnGastos, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(btnConfiguracion, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-										.addGap(36))
-								.addGroup(gl_contentPane.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(panelVistas, GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
+				.createSequentialGroup()
+				.addComponent(
+						panel_titulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGap(66)
+				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup().addGap(27)
+								.addComponent(btnNuevoConsumo, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnProductos, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnProveedores, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnGastos, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnConfiguracion, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+								.addGap(36))
+						.addGroup(gl_contentPane.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(panelVistas, GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))));
 
 		contentPane.setLayout(gl_contentPane);
 		this.addWindowStateListener(getControlador());
