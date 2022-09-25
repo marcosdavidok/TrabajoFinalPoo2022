@@ -12,6 +12,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 public class VistaConfig extends JPanel {
 
@@ -71,6 +72,7 @@ public class VistaConfig extends JPanel {
 		this.btnGuardar.addActionListener(getControlador());
 
 		btnLimpiar = new JButton("LIMPIAR");
+
 		btnLimpiar.setBackground(new Color(192, 192, 192));
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		ImageIcon imgBtnLimpiar = this.redimensionarImagen(
