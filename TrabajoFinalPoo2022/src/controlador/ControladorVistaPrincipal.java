@@ -61,7 +61,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 																		// hacerlo responsive
 		}
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.NORMAL) {
-			getControladorC().getVistaC().setBounds(0, 0, 858, 444);
+		getControladorC().getVistaC().setBounds(0, 0, 858, 444);
 		}
 	}
 

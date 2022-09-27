@@ -12,7 +12,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
-import java.awt.event.ActionListener;
 
 public class VistaConfig extends JPanel {
 
@@ -23,8 +22,8 @@ public class VistaConfig extends JPanel {
 	private JTextField textFieldDireccion;
 	private JTextField textFieldTelefono;
 	private ControladorConfig controlador;
-	private JButton btnGuardar;
 	private JButton btnLimpiar;
+	private JButton btnGuardar;
 
 	public VistaConfig(ControladorConfig controlador) {
 
@@ -63,22 +62,21 @@ public class VistaConfig extends JPanel {
 		textFieldTelefono = new JTextField();
 		textFieldTelefono.setColumns(10);
 
-		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBackground(new Color(102, 204, 51));
-		btnGuardar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		ImageIcon imgBtnGuardar = this.redimensionarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Guardar.png")).getImage(), 20, 20);
-		btnGuardar.setIcon(imgBtnGuardar);
-		this.btnGuardar.addActionListener(getControlador());
-
 		btnLimpiar = new JButton("LIMPIAR");
-
 		btnLimpiar.setBackground(new Color(192, 192, 192));
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		ImageIcon imgBtnLimpiar = this.redimensionarImagen(
+		ImageIcon imgBtnLimpiar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Limpiar.png")).getImage(), 20, 20);
 		btnLimpiar.setIcon(imgBtnLimpiar);
 		this.btnLimpiar.addActionListener(getControlador());
+
+		btnGuardar = new JButton("GUARDAR");
+		btnGuardar.setBackground(new Color(102, 204, 51));
+		btnGuardar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		ImageIcon imgBtnGuardar = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Guardar.png")).getImage(), 20, 20);
+		btnGuardar.setIcon(imgBtnGuardar);
+		this.btnGuardar.addActionListener(getControlador());
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
@@ -93,7 +91,7 @@ public class VistaConfig extends JPanel {
 								.addComponent(textFieldCodigoPostal, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 183,
+										.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 183,
 												GroupLayout.PREFERRED_SIZE)
 										.addComponent(textFieldTelefono, GroupLayout.PREFERRED_SIZE, 127,
 												GroupLayout.PREFERRED_SIZE))
@@ -103,7 +101,7 @@ public class VistaConfig extends JPanel {
 								.addGroup(
 										groupLayout
 												.createSequentialGroup()
-												.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 183,
+												.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 183,
 														GroupLayout.PREFERRED_SIZE)
 												.addContainerGap())
 								.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
@@ -135,14 +133,14 @@ public class VistaConfig extends JPanel {
 								.addComponent(textFieldTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
 						.addGap(108)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnGuardar)
-								.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnLimpiar)
+								.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
 						.addGap(105)));
 		this.setLayout(groupLayout);
 
 	}
 
-	private ImageIcon redimensionarImagen(Image img, int ancho, int alto) {
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
 		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
 		return imagen;
 	}
@@ -187,13 +185,9 @@ public class VistaConfig extends JPanel {
 		this.textFieldTelefono = textFieldTelefono;
 	}
 
-	public JButton getBtnGuardar() {
-		return btnGuardar;
-	}
 
-	public void setBtnGuardar(JButton btnGuardar) {
-		this.btnGuardar = btnGuardar;
-	}
+
+	
 
 	public JButton getBtnLimpiar() {
 		return btnLimpiar;
@@ -201,6 +195,14 @@ public class VistaConfig extends JPanel {
 
 	public void setBtnLimpiar(JButton btnLimpiar) {
 		this.btnLimpiar = btnLimpiar;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
 	}
 
 	public ControladorConfig getControlador() {

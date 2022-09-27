@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VistaBebida extends JPanel {
+public class VistaProductos extends JPanel {
 	private JTextField textFieldNombre;
 	private JTextField textFieldCantidad;
 	private JTextField textFieldPrecio;
@@ -24,7 +24,7 @@ public class VistaBebida extends JPanel {
 	private ControladorConfig controlador;
 
 	
-	public VistaBebida(ControladorConfig controlador) {
+	public VistaProductos(ControladorConfig controlador) {
 
 		this.setControlador(controlador);
 
@@ -92,21 +92,21 @@ public class VistaBebida extends JPanel {
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		
-		JButton btnNewButton = new JButton("AGREGAR");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAgregar = new JButton("AGREGAR");
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("ELIMINAR");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("MODIFICAR");
+		JButton btnModificar = new JButton("MODIFICAR");
 		
-		JButton btnNewButton_3 = new JButton("GUARDAR");
+		JButton btnGuardar = new JButton("GUARDAR");
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -115,13 +115,13 @@ public class VistaBebida extends JPanel {
 					.addGap(49)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+							.addComponent(btnAgregar, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(79))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -162,10 +162,10 @@ public class VistaBebida extends JPanel {
 						.addComponent(textFieldProveedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2)
-						.addComponent(btnNewButton_3))
+						.addComponent(btnAgregar)
+						.addComponent(btnEliminar)
+						.addComponent(btnModificar)
+						.addComponent(btnGuardar))
 					.addGap(18)
 					.addComponent(table, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
 					.addContainerGap())
