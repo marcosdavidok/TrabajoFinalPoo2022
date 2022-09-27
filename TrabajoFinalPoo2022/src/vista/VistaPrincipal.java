@@ -35,15 +35,15 @@ public class VistaPrincipal extends JFrame {
 	public VistaPrincipal(ControladorVistaPrincipal controlador) {
 		this.setControlador(controlador);
 
-		ImageIcon imgBtnProveedores = this.redimensionarImagen(
+		ImageIcon imgBtnProveedores = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Proveedores.png")).getImage(), 40, 40);
-		ImageIcon imgBtnConfiguracion = this.redimensionarImagen(
+		ImageIcon imgBtnConfiguracion = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Config.png")).getImage(), 40, 40);
-		ImageIcon imgBtnNuevoConsumo = this.redimensionarImagen(
+		ImageIcon imgBtnNuevoConsumo = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/NuevoConsumo.png")).getImage(), 40, 40);
-		ImageIcon imgBtnGastos = this.redimensionarImagen(
+		ImageIcon imgBtnGastos = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Gastos.png")).getImage(), 40, 40);
-		ImageIcon imgBtnProductos = this.redimensionarImagen(
+		ImageIcon imgBtnProductos = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Botellas.png")).getImage(), 40, 40);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +126,7 @@ public class VistaPrincipal extends JFrame {
 
 	}
 
-	protected ImageIcon redimensionarImagen(Image img, int ancho, int alto) {
+	protected ImageIcon ajustarImagen(Image img, int ancho, int alto) {
 		ImageIcon imgagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
 		return imgagen;
 	}
