@@ -13,7 +13,8 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 	private VistaPrincipal vistaPrincipal;
 	private ControladorConfig controladorC;
 	private ControladorProductos controladorP;
-	
+	private ControladorProveedores controladorPV;
+
 	public ControladorVistaPrincipal() {
 		super();
 		this.setVistaPrincipal(new VistaPrincipal(this));
@@ -22,10 +23,14 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		this.setControladorC(new ControladorConfig());
 		this.getVistaPrincipal().getPanelVistas().add(getControladorC().getVistaC(), 0, 2);
 		this.getControladorC().getVistaC().setVisible(false);
-		;
+
 		this.setControladorP(new ControladorProductos());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorP().getVistaP(), 0, 6);
+		this.getVistaPrincipal().getPanelVistas().add(getControladorP().getVistaP(), 0, 3);
 		this.getControladorP().getVistaP().setVisible(false);
+
+		this.setControladorPV(new ControladorProveedores());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorPV().getVistaPV(), 0, 4);
+		this.getControladorPV().getVistaPV().setVisible(false);
 	}
 
 	@Override
@@ -34,17 +39,20 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getVistaPrincipal().getLblTitulo().setText("NUEVO CONSUMO");
 			getControladorC().getVistaC().setVisible(false);
 			getControladorP().getVistaP().setVisible(false);
+			getControladorPV().getVistaPV().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnProductos())) {
 			getVistaPrincipal().getLblTitulo().setText("BEBIDAS");
 			getControladorP().getVistaP().setVisible(true);
 			getControladorC().getVistaC().setVisible(false);
-			
+			getControladorPV().getVistaPV().setVisible(false);
+
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnProveedores())) {
 			getVistaPrincipal().getLblTitulo().setText("PROVEEDORES");
+			getControladorPV().getVistaPV().setVisible(true);
 			getControladorC().getVistaC().setVisible(false);
 			getControladorP().getVistaP().setVisible(false);
 		}
@@ -53,14 +61,15 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getVistaPrincipal().getLblTitulo().setText("GASTOS");
 			getControladorC().getVistaC().setVisible(false);
 			getControladorP().getVistaP().setVisible(false);
+			getControladorPV().getVistaPV().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnConfiguracion())) {
 			getVistaPrincipal().getLblTitulo().setText("CONFIGURACIÓN");
 			getControladorC().getVistaC().setVisible(true);
 			getControladorP().getVistaP().setVisible(false);
+			getControladorPV().getVistaPV().setVisible(false);
 		}
-
 	}
 
 	@Override
@@ -69,10 +78,12 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorC().getVistaC().setBounds(0, 0, 1200, 700); // Le puse esto porque todavía no supe como
 																		// hacerlo responsive
 			getControladorP().getVistaP().setBounds(0, 0, 1200, 700);
+			getControladorPV().getVistaPV().setBounds(0, 0, 1200, 700);
 		}
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.NORMAL) {
 			getControladorC().getVistaC().setBounds(0, 0, 858, 444);
 			getControladorP().getVistaP().setBounds(0, 0, 858, 444);
+			getControladorPV().getVistaPV().setBounds(0, 0, 858, 444);
 		}
 	}
 
@@ -104,5 +115,12 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		this.controladorP = controladorP;
 	}
 
-}
+	public ControladorProveedores getControladorPV() {
+		return controladorPV;
+	}
 
+	public void setControladorPV(ControladorProveedores controladorPV) {
+		this.controladorPV = controladorPV;
+	}
+
+}

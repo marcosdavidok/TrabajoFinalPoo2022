@@ -21,8 +21,6 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 		this.getVistaP().getBtnEliminar().setEnabled(false);
 		setControladorP(this);
 	}
-	
-	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

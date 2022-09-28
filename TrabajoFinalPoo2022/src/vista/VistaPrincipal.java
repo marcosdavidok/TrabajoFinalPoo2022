@@ -35,58 +35,59 @@ public class VistaPrincipal extends JFrame {
 	public VistaPrincipal(ControladorVistaPrincipal controlador) {
 		this.setControlador(controlador);
 
-		ImageIcon imgBtnProveedores = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Proveedores.png")).getImage(), 40, 40);
-		ImageIcon imgBtnConfiguracion = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Config.png")).getImage(), 40, 40);
-		ImageIcon imgBtnNuevoConsumo = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/NuevoConsumo.png")).getImage(), 40, 40);
-		ImageIcon imgBtnGastos = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Gastos.png")).getImage(), 40, 40);
-		ImageIcon imgBtnProductos = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Botellas.png")).getImage(), 40, 40);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1064, 655);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 186, 107));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		this.setLocationRelativeTo(null); //Para centrar
+		this.setLocationRelativeTo(null); // Para centrar
 
 		JPanel panel_titulo = new JPanel();
 		panel_titulo.setBackground(new Color(255, 220, 138));
+
+		///////////////////////////////////////// BOTONES/////////////////////////////////////////
+		btnProveedores = new JButton("Proveedores");
+		btnProveedores.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		btnProveedores.addActionListener(getControlador());
+		ImageIcon imgBtnProveedores = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Proveedores.png")).getImage(), 40, 40);
+		btnProveedores.setIcon(imgBtnProveedores);
+
+		btnProductos = new JButton("Bebidas");
+		btnProductos.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		btnProductos.addActionListener(getControlador());
+		ImageIcon imgBtnProductos = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Botellas.png")).getImage(), 40, 40);
+		btnProductos.setIcon(imgBtnProductos);
+
+		btnGastos = new JButton("Gastos");
+		btnGastos.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		btnGastos.addActionListener(getControlador());
+		ImageIcon imgBtnGastos = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Gastos.png")).getImage(), 40, 40);
+		btnGastos.setIcon(imgBtnGastos);
+
+		btnConfiguracion = new JButton("Config");
+		btnConfiguracion.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		btnConfiguracion.addActionListener(getControlador());
+		ImageIcon imgBtnConfiguracion = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Config.png")).getImage(), 40, 40);
+		btnConfiguracion.setIcon(imgBtnConfiguracion);
+
+		btnNuevoConsumo = new JButton("Consumo");
+		btnNuevoConsumo.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		btnNuevoConsumo.addActionListener(getControlador());
+		ImageIcon imgBtnNuevoConsumo = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/NuevoConsumo.png")).getImage(), 40, 40);
+		btnNuevoConsumo.setIcon(imgBtnNuevoConsumo);
+		////////////////////////////////////////////////////////////////////////////////////////
 
 		lblTitulo = new JLabel("SISTEMA DE GASTOS");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setForeground(new Color(255, 186, 107));
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 60));
 		panel_titulo.add(lblTitulo);
-
-		btnProveedores = new JButton("Proveedores");
-		btnProveedores.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-		btnProveedores.addActionListener(getControlador());
-		btnProveedores.setIcon(imgBtnProveedores);
-
-		btnProductos = new JButton("Bebidas");
-		btnProductos.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-		btnProductos.addActionListener(getControlador());
-		btnProductos.setIcon(imgBtnProductos);
-
-		btnGastos = new JButton("Gastos");
-		btnGastos.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-		btnGastos.addActionListener(getControlador());
-		btnGastos.setIcon(imgBtnGastos);
-
-		btnConfiguracion = new JButton("Config");
-		btnConfiguracion.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-		btnConfiguracion.addActionListener(getControlador());
-		btnConfiguracion.setIcon(imgBtnConfiguracion);
-		
-		btnNuevoConsumo = new JButton("Consumo");
-		btnNuevoConsumo.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-		btnNuevoConsumo.addActionListener(getControlador());
-		btnNuevoConsumo.setIcon(imgBtnNuevoConsumo);
 
 		panelVistas = new JLayeredPane();
 		panelVistas.setBackground(new Color(255, 220, 138));
@@ -127,8 +128,8 @@ public class VistaPrincipal extends JFrame {
 	}
 
 	protected ImageIcon ajustarImagen(Image img, int ancho, int alto) {
-		ImageIcon imgagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
-		return imgagen;
+		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
+		return imagen;
 	}
 
 	public JButton getBtnNuevoConsumo() {

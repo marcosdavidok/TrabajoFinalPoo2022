@@ -14,16 +14,11 @@ import java.awt.Image;
 import java.awt.Color;
 
 public class VistaConfig extends JPanel {
-
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldRazonSocial;
-	private JTextField textFieldCodigoPostal;
-	private JTextField textFieldLocalidad;
-	private JTextField textFieldDireccion;
-	private JTextField textFieldTelefono;
+	private JTextField textFieldRazonSocial, textFieldCodigoPostal, textFieldLocalidad, textFieldDireccion,
+			textFieldTelefono;
+	private JButton btnGuardar, btnLimpiar;
 	private ControladorConfig controlador;
-	private JButton btnLimpiar;
-	private JButton btnGuardar;
 
 	public VistaConfig(ControladorConfig controlador) {
 
@@ -32,36 +27,7 @@ public class VistaConfig extends JPanel {
 		setBackground(new Color(255, 220, 138));
 		setBounds(0, 0, 858, 444);
 
-		JLabel lblRazonSocial = new JLabel("Razon social");
-		lblRazonSocial.setFont(new Font("Dialog", Font.BOLD, 14));
-
-		textFieldRazonSocial = new JTextField();
-		textFieldRazonSocial.setColumns(10);
-
-		JLabel lblCodigoPostal = new JLabel("Código postal");
-		lblCodigoPostal.setFont(new Font("Dialog", Font.BOLD, 14));
-
-		textFieldCodigoPostal = new JTextField();
-		textFieldCodigoPostal.setColumns(10);
-
-		JLabel lblLocalidad = new JLabel("Localidad");
-		lblLocalidad.setFont(new Font("Dialog", Font.BOLD, 14));
-
-		textFieldLocalidad = new JTextField();
-		textFieldLocalidad.setColumns(10);
-
-		JLabel lblDireccion = new JLabel("Dirección");
-		lblDireccion.setFont(new Font("Dialog", Font.BOLD, 14));
-
-		textFieldDireccion = new JTextField();
-		textFieldDireccion.setColumns(10);
-
-		JLabel lblTelfono = new JLabel("Teléfono");
-		lblTelfono.setFont(new Font("Dialog", Font.BOLD, 14));
-
-		textFieldTelefono = new JTextField();
-		textFieldTelefono.setColumns(10);
-
+		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnLimpiar = new JButton("LIMPIAR");
 		btnLimpiar.setBackground(new Color(192, 192, 192));
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -77,12 +43,38 @@ public class VistaConfig extends JPanel {
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Guardar.png")).getImage(), 20, 20);
 		btnGuardar.setIcon(imgBtnGuardar);
 		this.btnGuardar.addActionListener(getControlador());
+		////////////////////////////////////////////////////////////////////////////////////////
+
+		JLabel lblRazonSocial = new JLabel("Razon social");
+		lblRazonSocial.setFont(new Font("Dialog", Font.BOLD, 14));
+		textFieldRazonSocial = new JTextField();
+		textFieldRazonSocial.setColumns(10);
+
+		JLabel lblCodigoPostal = new JLabel("Código postal");
+		lblCodigoPostal.setFont(new Font("Dialog", Font.BOLD, 14));
+		textFieldCodigoPostal = new JTextField();
+		textFieldCodigoPostal.setColumns(10);
+
+		JLabel lblLocalidad = new JLabel("Localidad");
+		lblLocalidad.setFont(new Font("Dialog", Font.BOLD, 14));
+		textFieldLocalidad = new JTextField();
+		textFieldLocalidad.setColumns(10);
+
+		JLabel lblDireccion = new JLabel("Dirección");
+		lblDireccion.setFont(new Font("Dialog", Font.BOLD, 14));
+		textFieldDireccion = new JTextField();
+		textFieldDireccion.setColumns(10);
+
+		JLabel lblTelefono = new JLabel("Teléfono");
+		lblTelefono.setFont(new Font("Dialog", Font.BOLD, 14));
+		textFieldTelefono = new JTextField();
+		textFieldTelefono.setColumns(10);
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap(87, Short.MAX_VALUE)
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblTelfono, Alignment.TRAILING).addComponent(lblRazonSocial, Alignment.TRAILING)
+						.addComponent(lblTelefono, Alignment.TRAILING).addComponent(lblRazonSocial, Alignment.TRAILING)
 						.addComponent(lblCodigoPostal, Alignment.TRAILING))
 				.addGap(37)
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -129,7 +121,7 @@ public class VistaConfig extends JPanel {
 								.addComponent(lblDireccion).addComponent(textFieldDireccion, GroupLayout.PREFERRED_SIZE,
 										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGap(45)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblTelfono)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblTelefono)
 								.addComponent(textFieldTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
 						.addGap(108)
@@ -184,10 +176,6 @@ public class VistaConfig extends JPanel {
 	public void setTextFieldTelefono(JTextField textFieldTelefono) {
 		this.textFieldTelefono = textFieldTelefono;
 	}
-
-
-
-	
 
 	public JButton getBtnLimpiar() {
 		return btnLimpiar;

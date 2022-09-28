@@ -31,7 +31,6 @@ public class ControladorConfig implements ActionListener {
 			vistaC.getTextFieldTelefono().setText(null);
 			vistaC.getTextFieldDireccion().setText(null);
 		}
-
 	}
 
 	public VistaConfig getVistaC() {

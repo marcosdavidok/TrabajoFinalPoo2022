@@ -23,96 +23,82 @@ public class VistaProductos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	protected JTable table;
-
-	private JTextField textFieldNombre;
-	protected JTextField textFieldCantidad;
-	private JTextField textFieldPrecio;
+	private JButton btnGuardar, btnLimpiar, btnModificar, btnEliminar, btnBuscarProveedor;
+	private JTextField textFieldNombre, textFieldCantidad, textFieldPrecio, textFieldProveedor;
+	private JLabel lblNombre, lblCantidad, lblPrecio, lblProveedor;
 	protected DefaultTableModel ModeloTabla;
-
-	private JLabel lblNombre;
-	private JLabel lblCantidad;
-	private JLabel lblPrecio;
-	private JLabel lblProveedor;
 	private ControladorProductos controladorProductos;
-	private JButton btnAñadir, btnNuevo, btnModificar, btnEliminar;
-	private JButton btnBuscarProveedor;
-	private JTextField textFieldProveedor;
 
 	public VistaProductos(ControladorProductos controladorProductos) {
 		this.setControladorProductos(controladorProductos);
 
 		setBackground(new Color(255, 220, 138));
 		setBounds(0, 0, 860, 444);
-
 		JScrollPane scrollPane = new JScrollPane();
 
+		///////////////////////////////////////// BOTONES/////////////////////////////////////////
+		btnGuardar = new JButton("GUARDAR");
+		btnGuardar.setBackground(new Color(102, 204, 51));
+		btnGuardar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		btnGuardar.addActionListener(getControladorProductos());
 		ImageIcon imgBtnGuardar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Guardar.png")).getImage(), 20, 20);
-		ImageIcon imgBtnEliminar = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Eliminar.png")).getImage(), 20, 20);
-		ImageIcon imgBtnNuevo = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Limpiar.png")).getImage(), 20, 20);
-		ImageIcon imgBtnModificar = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Modificar.png")).getImage(), 20, 20);
-		ImageIcon imgBtnBuscar = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Buscar.png")).getImage(), 20, 20);
+		btnGuardar.setIcon(imgBtnGuardar);
 
-		btnAñadir = new JButton("AÑADIR");
-		btnAñadir.setBackground(new Color(102, 204, 51));
-		btnAñadir.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnAñadir.addActionListener(getControladorProductos());
-		btnAñadir.setIcon(imgBtnGuardar);
-		
-		btnNuevo = new JButton("NUEVO ");
-		btnNuevo.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnNuevo.addActionListener(getControladorProductos());
-		btnNuevo.setIcon(imgBtnNuevo);
+		btnLimpiar = new JButton("LIMPIAR");
+		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		btnLimpiar.addActionListener(getControladorProductos());
+		ImageIcon imgBtnLimpiar = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Limpiar.png")).getImage(), 20, 20);
+		btnLimpiar.setIcon(imgBtnLimpiar);
 
 		btnModificar = new JButton("MODIFICAR");
 		btnModificar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnModificar.addActionListener(getControladorProductos());
+		ImageIcon imgBtnModificar = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Modificar.png")).getImage(), 20, 20);
 		btnModificar.setIcon(imgBtnModificar);
-		
+
 		btnEliminar = new JButton("ELIMINAR");
 		btnEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnEliminar.addActionListener(getControladorProductos());
+		ImageIcon imgBtnEliminar = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Eliminar.png")).getImage(), 20, 20);
 		btnEliminar.setIcon(imgBtnEliminar);
 
+		btnBuscarProveedor = new JButton("BUSCAR");
+		btnBuscarProveedor.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		btnBuscarProveedor.addActionListener(getControladorProductos());
+		ImageIcon imgBtnBuscar = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Buscar.png")).getImage(), 20, 20);
+		btnBuscarProveedor.setIcon(imgBtnBuscar);
+		////////////////////////////////////////////////////////////////////////////////////////
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-
-		lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-
-		lblPrecio = new JLabel("Precio");
-		lblPrecio.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-
-		lblProveedor = new JLabel("Proveedor");
-		lblProveedor.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
-
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
 		textFieldNombre.addFocusListener(getControladorProductos());
 		textFieldNombre.addKeyListener(getControladorProductos());
+
+		lblCantidad = new JLabel("Cantidad");
+		lblCantidad.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		textFieldCantidad = new JTextField();
 		textFieldCantidad.setColumns(10);
 		textFieldCantidad.addFocusListener(getControladorProductos());
 		textFieldCantidad.addKeyListener(getControladorProductos());
 
+		lblPrecio = new JLabel("Precio");
+		lblPrecio.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		textFieldPrecio = new JTextField();
 		textFieldPrecio.setColumns(10);
 		textFieldPrecio.addFocusListener(getControladorProductos());
 		textFieldPrecio.addKeyListener(getControladorProductos());
 
-		btnBuscarProveedor = new JButton("BUSCAR");
-		btnBuscarProveedor.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnBuscarProveedor.addActionListener(getControladorProductos());
-		btnBuscarProveedor.setIcon(imgBtnBuscar);
-
+		lblProveedor = new JLabel("Proveedor");
+		lblProveedor.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		textFieldProveedor = new JTextField();
 		textFieldProveedor.setColumns(10);
 		textFieldProveedor.setEnabled(false);
-		;
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
@@ -120,8 +106,8 @@ public class VistaProductos extends JPanel {
 				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup().addComponent(btnAñadir)
-												.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnNuevo,
+										.addGroup(groupLayout.createSequentialGroup().addComponent(btnGuardar)
+												.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLimpiar,
 														GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
 												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -178,8 +164,8 @@ public class VistaProductos extends JPanel {
 								.addComponent(btnBuscarProveedor, GroupLayout.PREFERRED_SIZE, 24,
 										GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAñadir)
-								.addComponent(btnNuevo, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnGuardar)
+								.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 						.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
@@ -204,8 +190,8 @@ public class VistaProductos extends JPanel {
 	}
 
 	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
-		ImageIcon img2 = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
-		return img2;
+		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
+		return imagen;
 	}
 
 	public DefaultTableModel getModeloTabla() {
@@ -232,20 +218,20 @@ public class VistaProductos extends JPanel {
 		this.textFieldNombre = textFieldNombre;
 	}
 
-	public JButton getBtnAñadir() {
-		return btnAñadir;
+	public JButton getBtnGuardar() {
+		return btnGuardar;
 	}
 
-	public void setBtnAñadir(JButton btnAñadir) {
-		this.btnAñadir = btnAñadir;
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
 	}
 
-	public JButton getBtnNuevo() {
-		return btnNuevo;
+	public JButton getBtnLimpiar() {
+		return btnLimpiar;
 	}
 
-	public void setBtnNuevo(JButton btnNuevo) {
-		this.btnNuevo = btnNuevo;
+	public void setBtnLimpiar(JButton btnLimpiar) {
+		this.btnLimpiar = btnLimpiar;
 	}
 
 	public JButton getBtnModificar() {
