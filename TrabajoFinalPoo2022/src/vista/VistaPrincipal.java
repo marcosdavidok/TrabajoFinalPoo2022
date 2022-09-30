@@ -85,7 +85,7 @@ public class VistaPrincipal extends JFrame {
 
 		lblTitulo = new JLabel("SISTEMA DE GASTOS");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setForeground(new Color(255, 186, 107));
+		lblTitulo.setForeground(Color.GRAY);
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 60));
 		panel_titulo.add(lblTitulo);
 

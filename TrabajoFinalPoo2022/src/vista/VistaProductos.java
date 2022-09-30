@@ -17,16 +17,18 @@ import controlador.ControladorProductos;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-//import javax.swing.UIManager;
+import javax.swing.UIManager;
 
 public class VistaProductos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	protected JTable table;
-	private JButton btnGuardar, btnLimpiar, btnModificar, btnEliminar, btnBuscarProveedor;
-	private JTextField textFieldNombre, textFieldCantidad, textFieldPrecio, textFieldProveedor;
-	private JLabel lblNombre, lblCantidad, lblPrecio, lblProveedor;
 	protected DefaultTableModel ModeloTabla;
+	private JButton btnGuardar, btnLimpiar, btnModificar, btnEliminar, btnBuscarProveedor, btnBuscarProducto,
+			btnImprimir;
+	protected JTextField textFieldCantidad, textFieldPrecio, textFieldNombre, textFieldBuscar, textFieldProveedor;
+	private JLabel lblNombre, lblCantidad, lblPrecio, lblProveedor;
+
 	private ControladorProductos controladorProductos;
 
 	public VistaProductos(ControladorProductos controladorProductos) {
@@ -60,6 +62,7 @@ public class VistaProductos extends JPanel {
 		btnModificar.setIcon(imgBtnModificar);
 
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBackground(UIManager.getColor("Button.background"));
 		btnEliminar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnEliminar.addActionListener(getControladorProductos());
 		ImageIcon imgBtnEliminar = this.ajustarImagen(
@@ -72,30 +75,46 @@ public class VistaProductos extends JPanel {
 		ImageIcon imgBtnBuscar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Buscar.png")).getImage(), 20, 20);
 		btnBuscarProveedor.setIcon(imgBtnBuscar);
+
+		btnBuscarProducto = new JButton("BUSCAR");
+		btnBuscarProducto.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		btnBuscarProducto.addActionListener(getControladorProductos());
+		btnBuscarProducto.setIcon(imgBtnBuscar);
+		textFieldBuscar = new JTextField();
+		textFieldBuscar.setColumns(10);
+		textFieldBuscar.addKeyListener(getControladorProductos());
+
+		btnImprimir = new JButton("IMPRIMIR");
+		btnImprimir.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		btnImprimir.addActionListener(getControladorProductos());
+		ImageIcon imgBtnImprimir = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Impresora.png")).getImage(), 20, 20);
+		btnImprimir.setIcon(imgBtnImprimir);
 		////////////////////////////////////////////////////////////////////////////////////////
+
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblNombre.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
 		textFieldNombre.addFocusListener(getControladorProductos());
 		textFieldNombre.addKeyListener(getControladorProductos());
 
 		lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblCantidad.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldCantidad = new JTextField();
 		textFieldCantidad.setColumns(10);
 		textFieldCantidad.addFocusListener(getControladorProductos());
 		textFieldCantidad.addKeyListener(getControladorProductos());
 
 		lblPrecio = new JLabel("Precio");
-		lblPrecio.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblPrecio.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldPrecio = new JTextField();
 		textFieldPrecio.setColumns(10);
 		textFieldPrecio.addFocusListener(getControladorProductos());
 		textFieldPrecio.addKeyListener(getControladorProductos());
 
 		lblProveedor = new JLabel("Proveedor");
-		lblProveedor.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblProveedor.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldProveedor = new JTextField();
 		textFieldProveedor.setColumns(10);
 		textFieldProveedor.setEnabled(false);
@@ -103,8 +122,8 @@ public class VistaProductos extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap()
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup().addComponent(btnGuardar)
 												.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLimpiar,
@@ -125,12 +144,13 @@ public class VistaProductos extends JPanel {
 										Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup().addComponent(btnModificar)
 												.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnEliminar))
-										.addGroup(groupLayout.createSequentialGroup().addGroup(
-												groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, 119,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 88,
-																GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
+												.createParallelGroup(Alignment.LEADING)
+												.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, 119,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														lblPrecio, GroupLayout.PREFERRED_SIZE, 88,
+														GroupLayout.PREFERRED_SIZE))
 												.addGap(18)
 												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 														.addGroup(groupLayout.createSequentialGroup()
@@ -140,36 +160,52 @@ public class VistaProductos extends JPanel {
 																.addPreferredGap(ComponentPlacement.RELATED)
 																.addComponent(btnBuscarProveedor))
 														.addComponent(lblProveedor, GroupLayout.PREFERRED_SIZE, 93,
-																GroupLayout.PREFERRED_SIZE)))))
+																GroupLayout.PREFERRED_SIZE))))
+								.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+								.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addGap(78))
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
-								.addContainerGap()))));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(52)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblCantidad, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblProveedor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, 244,
 										GroupLayout.PREFERRED_SIZE)
-								.addComponent(textFieldCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnBuscarProducto, GroupLayout.PREFERRED_SIZE, 124,
 										GroupLayout.PREFERRED_SIZE)
-								.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(textFieldProveedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnBuscarProveedor, GroupLayout.PREFERRED_SIZE, 24,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnGuardar)
-								.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-						.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-						.addGap(6)));
+								.addContainerGap())
+						.addGroup(Alignment.TRAILING,
+								groupLayout.createSequentialGroup()
+										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+										.addContainerGap()))));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addContainerGap()
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBuscarProducto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+				.addGap(18)
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCantidad, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblProveedor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldProveedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBuscarProveedor, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(ComponentPlacement.UNRELATED)
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnGuardar)
+						.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+				.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(6)));
 
 		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
@@ -274,6 +310,14 @@ public class VistaProductos extends JPanel {
 		this.textFieldPrecio = textFieldPrecio;
 	}
 
+	public JButton getBtnImprimir() {
+		return btnImprimir;
+	}
+
+	public void setBtnImprimir(JButton btnImprimir) {
+		this.btnImprimir = btnImprimir;
+	}
+
 	public JButton getBtnBuscarProveedor() {
 		return btnBuscarProveedor;
 	}
@@ -290,4 +334,19 @@ public class VistaProductos extends JPanel {
 		this.textFieldProveedor = textFieldProveedor;
 	}
 
+	public JTextField getTextFieldBuscar() {
+		return textFieldBuscar;
+	}
+
+	public void setTextFieldBuscar(JTextField textFieldBuscar) {
+		this.textFieldBuscar = textFieldBuscar;
+	}
+
+	public JButton getBtnBuscarProducto() {
+		return btnBuscarProducto;
+	}
+
+	public void setBtnBuscarProducto(JButton btnBuscarProducto) {
+		this.btnBuscarProducto = btnBuscarProducto;
+	}
 }

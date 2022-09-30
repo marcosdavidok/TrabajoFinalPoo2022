@@ -86,34 +86,34 @@ public class VistaProveedores extends JPanel {
 		////////////////////////////////////////////////////////////////////////////////////////
 
 		lblCuit = new JLabel("CUIT");
-		lblCuit.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblCuit.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldCuit = new JTextField();
 		textFieldCuit.setColumns(10);
 		textFieldCuit.addFocusListener(getControladorProveedor());
 		textFieldCuit.addKeyListener(getControladorProveedor());
 
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblNombre.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
 		textFieldNombre.addFocusListener(getControladorProveedor());
 		textFieldNombre.addKeyListener(getControladorProveedor());
 
 		lblDireccion = new JLabel("Dirección");
-		lblDireccion.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblDireccion.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldDireccion = new JTextField();
 		textFieldDireccion.setColumns(10);
 		textFieldDireccion.addFocusListener(getControladorProveedor());
 
 		lblTelefono = new JLabel("Teléfono");
-		lblTelefono.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblTelefono.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldTelefono = new JTextField();
 		textFieldTelefono.setColumns(10);
 		textFieldTelefono.addFocusListener(getControladorProveedor());
 		textFieldTelefono.addKeyListener(getControladorProveedor());
 
 		lblRazonSocial = new JLabel("Razón Social");
-		lblRazonSocial.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
+		lblRazonSocial.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldRazonSocial = new JTextField();
 		textFieldRazonSocial.setColumns(10);
 		textFieldRazonSocial.addFocusListener(getControladorProveedor());
@@ -203,8 +203,8 @@ public class VistaProveedores extends JPanel {
 						.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
 						.addContainerGap()));
 
-		String header[] = { "CUIT", "Nombre", "Telefono", "Direccion", "Razon Social" };
-		this.setModeloTabla(new DefaultTableModel(null, header));
+		String encabezado[] = { "CUIT", "Nombre", "Telefono", "Direccion", "Razon Social" };
+		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
 			private static final long serialVersionUID = 1L;
 
