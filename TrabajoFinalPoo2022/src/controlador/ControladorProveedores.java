@@ -14,11 +14,9 @@ import vista.VistaProveedores;
 public class ControladorProveedores implements ActionListener, FocusListener, KeyListener, MouseListener {
 
 	private VistaProveedores vistaPV;
-
 	public static ControladorProveedores controladorP;
 
 	public ControladorProveedores() {
-
 		this.setVistaPV(new VistaProveedores(this));
 		this.getVistaPV().getBtnModificar().setEnabled(false);
 		this.getVistaPV().getBtnEliminar().setEnabled(false);

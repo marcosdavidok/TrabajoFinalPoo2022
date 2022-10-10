@@ -207,7 +207,7 @@ public class VistaProductos extends JPanel {
 						.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 				.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(6)));
 
-		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
+		String encabezado[] = { "Código", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
 

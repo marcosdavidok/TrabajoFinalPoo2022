@@ -3,7 +3,6 @@ package vista;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -24,11 +23,7 @@ public class VistaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected JPanel contentPane;
 	private ControladorVistaPrincipal controlador;
-	protected JButton btnNuevoConsumo;
-	protected JButton btnProveedores;
-	protected JButton btnProductos;
-	protected JButton btnGastos;
-	protected JButton btnConfiguracion;
+	protected JButton btnNuevoConsumo,btnProveedores,btnProductos,btnGastos,btnConfiguracion;
 	protected JLayeredPane panelVistas;
 	private JLabel lblTitulo;
 
