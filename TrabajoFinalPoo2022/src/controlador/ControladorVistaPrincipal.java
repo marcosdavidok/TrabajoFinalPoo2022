@@ -15,6 +15,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 	private ControladorProductos controladorP;
 	private ControladorProveedores controladorPV;
 	private ControladorNuevoConsumo controladorNC;
+	private ControladorGastos controladorG;
 	
 	public ControladorVistaPrincipal() {
 		super();
@@ -36,6 +37,10 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		this.setControladorNC(new ControladorNuevoConsumo());
 		this.getVistaPrincipal().getPanelVistas().add(getControladorNC().getVistaNC(), 0, 5);
 		this.getControladorNC().getVistaNC().setVisible(false);
+		
+		this.setControladorG(new ControladorGastos());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorG().getVistaGastos(), 0, 6);
+		this.getControladorG().getVistaGastos().setVisible(false);
 	}
 
 	@Override
@@ -46,6 +51,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorC().getVistaC().setVisible(false);
 			getControladorP().getVistaP().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
+			getControladorG().getVistaGastos().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnProductos())) {
@@ -54,6 +60,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorC().getVistaC().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
 			getControladorNC().getVistaNC().setVisible(false);
+			getControladorG().getVistaGastos().setVisible(false);
 
 		}
 
@@ -63,10 +70,12 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorC().getVistaC().setVisible(false);
 			getControladorP().getVistaP().setVisible(false);
 			getControladorNC().getVistaNC().setVisible(false);
+			getControladorG().getVistaGastos().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnGastos())) {
 			getVistaPrincipal().getLblTitulo().setText("GASTOS");
+			getControladorG().getVistaGastos().setVisible(true);
 			getControladorC().getVistaC().setVisible(false);
 			getControladorP().getVistaP().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
@@ -141,6 +150,14 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 
 	public void setControladorNC(ControladorNuevoConsumo controladorNC) {
 		this.controladorNC = controladorNC;
+	}
+
+	public ControladorGastos getControladorG() {
+		return controladorG;
+	}
+
+	public void setControladorG(ControladorGastos controladorG) {
+		this.controladorG = controladorG;
 	}
 	
 
