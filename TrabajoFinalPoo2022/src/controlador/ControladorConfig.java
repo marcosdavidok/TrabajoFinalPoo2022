@@ -41,4 +41,4 @@ public class ControladorConfig implements ActionListener {
 		this.vistaC = vistaC;
 	}
 
-}
+} 
