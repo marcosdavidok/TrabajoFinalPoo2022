@@ -21,7 +21,6 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 	public static ControladorNuevoConsumo controladorNuevoConsumo;
 
 	public ControladorNuevoConsumo() {
-		super();
 		this.setVistaNC(new VistaNuevoConsumo(this));
 		this.getVistaNC().getBtnAgregar().setEnabled(false);
 		this.getVistaNC().getBtnBorrar().setEnabled(false);

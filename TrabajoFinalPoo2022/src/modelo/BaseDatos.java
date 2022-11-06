@@ -65,7 +65,7 @@ public class BaseDatos {
 
 				rs.next();
 
-				return tabla != "ventas" ? null : rs.getInt(1);
+				return tabla != "consumos" ? null : rs.getInt(1);
 
 			} else {
 				Integer entero = ps.getUpdateCount();
