@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 
 public class BaseDatos {
 	private Connection conexion;
-	private String url = "jdbc:mysql://localhost:3306/club?characterEncoding=latin1&useConfigs=maxPerformance";
+	private String url = "jdbc:mysql://localhost:3306/drinkcounter?characterEncoding=latin1&useConfigs=maxPerformance";
 	private String usuario = "root";
-	private String clave = "";
+	private String clave = "Adminpoo22"; //Contraseña de cada uno
 	private static BaseDatos bd = null;
 
 	private BaseDatos() {
 		try {
-			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			this.setConexion(DriverManager.getConnection(url, usuario, clave));
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class BaseDatos {
 		return rs;
 	}
 
-	public Integer alta(String tabla, String columnas, String valores) { // ALTA
+	public Integer alta(String tabla, String columnas, String valores) {
 
 		try {
 			PreparedStatement ps = conexion.prepareStatement(
@@ -79,7 +79,7 @@ public class BaseDatos {
 
 	}
 
-	public Boolean update(String tabla, String primaryKey, Integer id, String valores) { // MODIFICACION
+	public Boolean update(String tabla, String primaryKey, Integer id, String valores) {
 
 		try {
 			PreparedStatement ps = conexion
@@ -94,7 +94,7 @@ public class BaseDatos {
 		return false;
 	}
 
-	public Boolean remove(String tabla, String primaryKey, Integer id) { // BAJA
+	public Boolean remove(String tabla, String primaryKey, Integer id) {
 
 		Statement st;
 		try {

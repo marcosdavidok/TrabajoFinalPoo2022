@@ -137,6 +137,22 @@ public class VistaConfig extends JPanel {
 		return imagen;
 	}
 
+	public JTextField getTextFieldCodigoPostal() {
+		return textFieldCodigoPostal;
+	}
+
+	public void setTextFieldCodigoPostal(JTextField textFieldCodigoPostal) {
+		this.textFieldCodigoPostal = textFieldCodigoPostal;
+	}
+
+	public JTextField getTextFieldDireccion() {
+		return textFieldDireccion;
+	}
+
+	public void setTextFieldDireccion(JTextField textFieldDireccion) {
+		this.textFieldDireccion = textFieldDireccion;
+	}
+
 	public JTextField getTextFieldRazonSocial() {
 		return textFieldRazonSocial;
 	}
@@ -145,28 +161,12 @@ public class VistaConfig extends JPanel {
 		this.textFieldRazonSocial = textFieldRazonSocial;
 	}
 
-	public JTextField getTextFieldDireccion() {
-		return textFieldCodigoPostal;
-	}
-
-	public void setTextFieldDireccion(JTextField textFieldDireccion) {
-		this.textFieldCodigoPostal = textFieldDireccion;
-	}
-
 	public JTextField getTextFieldLocalidad() {
 		return textFieldLocalidad;
 	}
 
 	public void setTextFieldLocalidad(JTextField textFieldLocalidad) {
 		this.textFieldLocalidad = textFieldLocalidad;
-	}
-
-	public JTextField getTextFieldCodigoPostal() {
-		return textFieldDireccion;
-	}
-
-	public void setTextFieldCodigoPostal(JTextField textFieldCodigoPostal) {
-		this.textFieldDireccion = textFieldCodigoPostal;
 	}
 
 	public JTextField getTextFieldTelefono() {
