@@ -25,12 +25,10 @@ public class VistaBuscarProveedor extends JFrame {
 	protected JPanel contentPane;
 	private JPanel panelTabla;
 	private JTable table;
-	private JButton btnBuscar,btnAgregar;
+	private JButton btnBuscar, btnAgregar;
 	private JTextField textFieldBuscar;
 	private JLabel lblTitulo;
 	private ControladorBuscarProveedor controlador;
-
-
 
 	public VistaBuscarProveedor(ControladorBuscarProveedor controlador) {
 
@@ -51,7 +49,7 @@ public class VistaBuscarProveedor extends JFrame {
 		contentPane.add(panelTitulo);
 		panelTitulo.setBackground(new Color(255, 220, 138));
 		contentPane.add(panelTitulo);
-		
+
 		lblTitulo = new JLabel("BUSCAR PROVEEDOR");
 		lblTitulo.setForeground(new Color(255, 186, 107));
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 35));
@@ -83,7 +81,7 @@ public class VistaBuscarProveedor extends JFrame {
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Nuevo.png")).getImage(), 20, 20);
 		btnAgregar.setIcon(imgBtnAgregar);
 		////////////////////////////////////////////////////////////////////////////////////////
-		
+
 		GroupLayout groupLayout = new GroupLayout(panelTabla);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
@@ -103,8 +101,8 @@ public class VistaBuscarProveedor extends JFrame {
 
 		);
 
-		String header[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
-		this.setModeloTabla(new DefaultTableModel(null, header));
+		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
+		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
 
 			private static final long serialVersionUID = 1L;

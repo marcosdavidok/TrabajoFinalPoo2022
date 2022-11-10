@@ -101,7 +101,7 @@ public class VistaAgregarProducto extends JFrame {
 
 		);
 
-		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "DNI Proveedor" };
+		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
 
