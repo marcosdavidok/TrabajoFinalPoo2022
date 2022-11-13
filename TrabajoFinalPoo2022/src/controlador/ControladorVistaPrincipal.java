@@ -40,8 +40,8 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		this.getControladorPV().getVistaPV().setVisible(false);
 
 		this.setControladorP(new ControladorProductos());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorP().getVistaP(), 0, 5);
-		this.getControladorP().getVistaP().setVisible(false);
+		this.getVistaPrincipal().getPanelVistas().add(getControladorP().getVistaProductos(), 0, 5);
+		this.getControladorP().getVistaProductos().setVisible(false);
 
 		this.setControladorG(new ControladorGastos());
 		this.getVistaPrincipal().getPanelVistas().add(getControladorG().getVistaGastos(), 0, 6);
@@ -57,13 +57,13 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorNC().getVistaNC().setVisible(true);
 			getControladorC().getVistaC().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
-			getControladorP().getVistaP().setVisible(false);
+			getControladorP().getVistaProductos().setVisible(false);
 			getControladorG().getVistaGastos().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnProductos())) {
 			getVistaPrincipal().getLblTitulo().setText("BEBIDAS");
-			getControladorP().getVistaP().setVisible(true);
+			getControladorP().getVistaProductos().setVisible(true);
 			getControladorPV().getVistaPV().setVisible(false);
 			getControladorNC().getVistaNC().setVisible(false);
 			getControladorC().getVistaC().setVisible(false);
@@ -74,14 +74,14 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorPV().getVistaPV().setVisible(true);
 			getControladorNC().getVistaNC().setVisible(false);
 			getControladorC().getVistaC().setVisible(false);
-			getControladorP().getVistaP().setVisible(false);
+			getControladorP().getVistaProductos().setVisible(false);
 			getControladorG().getVistaGastos().setVisible(false);
 
 		}
 		if (e.getSource().equals(getVistaPrincipal().getBtnGastos())) {
 			getVistaPrincipal().getLblTitulo().setText("GASTOS");
 			getControladorG().getVistaGastos().setVisible(true);
-			getControladorP().getVistaP().setVisible(false);
+			getControladorP().getVistaProductos().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
 			getControladorNC().getVistaNC().setVisible(false);
 			getControladorC().getVistaC().setVisible(false);
@@ -92,7 +92,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorC().getVistaC().setVisible(true);
 			getControladorNC().getVistaNC().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
-			getControladorP().getVistaP().setVisible(false);
+			getControladorP().getVistaProductos().setVisible(false);
 			getControladorG().getVistaGastos().setVisible(false);
 		}
 
@@ -101,7 +101,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorC().getVistaC().setVisible(false);
 			getControladorNC().getVistaNC().setVisible(false);
 			getControladorPV().getVistaPV().setVisible(false);
-			getControladorP().getVistaP().setVisible(false);
+			getControladorP().getVistaProductos().setVisible(false);
 			getControladorG().getVistaGastos().setVisible(false);
 		}
 
@@ -134,7 +134,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.MAXIMIZED_BOTH) {
 			getControladorC().getVistaC().setBounds(0, 0, 1200, 700);
 			getControladorNC().getVistaNC().setBounds(0, 0, 1200, 700);
-			getControladorP().getVistaP().setBounds(0, 0, 1200, 700);
+			getControladorP().getVistaProductos().setBounds(0, 0, 1200, 700);
 			getControladorPV().getVistaPV().setBounds(0, 0, 1200, 700);
 			getControladorG().getVistaGastos().setBounds(0, 0, 1200, 700);
 
@@ -142,7 +142,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.NORMAL) {
 			getControladorC().getVistaC().setBounds(0, 0, 858, 444);
 			getControladorNC().getVistaNC().setBounds(0, 0, 858, 444);
-			getControladorP().getVistaP().setBounds(0, 0, 858, 444);
+			getControladorP().getVistaProductos().setBounds(0, 0, 858, 444);
 			getControladorPV().getVistaPV().setBounds(0, 0, 858, 444);
 			getControladorG().getVistaGastos().setBounds(0, 0, 858, 444);
 
