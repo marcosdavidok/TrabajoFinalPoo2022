@@ -17,16 +17,16 @@ import vista.VistaNuevoConsumo;
 
 public class ControladorNuevoConsumo implements ActionListener, FocusListener, KeyListener, MouseListener,
 		WindowListener, ItemListener, WindowStateListener {
-	private VistaNuevoConsumo vistaNC;
+	private VistaNuevoConsumo vistaNuevoConsumo;
 	public static ControladorNuevoConsumo controladorNuevoConsumo;
 
 	public ControladorNuevoConsumo() {
 		this.setVistaNC(new VistaNuevoConsumo(this));
-		this.getVistaNC().getBtnAgregar().setEnabled(false);
-		this.getVistaNC().getBtnBorrar().setEnabled(false);
-		this.getVistaNC().getTextFieldStock().setEnabled(false);
-		this.getVistaNC().getTextFieldProducto().setEnabled(false);
-		this.getVistaNC().getBtnRegistrar().setEnabled(false);
+		this.getVistaNuevoConsumo().getBtnAgregar().setEnabled(false);
+		this.getVistaNuevoConsumo().getBtnBorrar().setEnabled(false);
+		this.getVistaNuevoConsumo().getTextFieldStock().setEnabled(false);
+		this.getVistaNuevoConsumo().getTextFieldProducto().setEnabled(false);
+		this.getVistaNuevoConsumo().getBtnRegistrar().setEnabled(false);
 		setControladorNuevaVenta(this);
 
 	}
@@ -151,12 +151,12 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 
 	}
 
-	public VistaNuevoConsumo getVistaNC() {
-		return vistaNC;
+	public VistaNuevoConsumo getVistaNuevoConsumo() {
+		return vistaNuevoConsumo;
 	}
 
-	public void setVistaNC(VistaNuevoConsumo vistaNC) {
-		this.vistaNC = vistaNC;
+	public void setVistaNC(VistaNuevoConsumo vistaNuevoConsumo) {
+		this.vistaNuevoConsumo = vistaNuevoConsumo;
 	}
 
 	public static ControladorNuevoConsumo getControladorNuevaVenta() {

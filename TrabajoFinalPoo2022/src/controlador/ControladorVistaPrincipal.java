@@ -15,37 +15,37 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 
 	private static ControladorVistaPrincipal ControladorVistaPrincipal;
 	private VistaPrincipal vistaPrincipal;
-	private ControladorConfig controladorC;
-	private ControladorNuevoConsumo controladorNC;
-	private ControladorAgregarProducto controladorAP;
+	private ControladorConfig controladorConfig;
+	private ControladorNuevoConsumo controladorNuevoConsumo;
 
-	private ControladorProveedores controladorPV;
-	private ControladorProductos controladorP;
-	private ControladorGastos controladorG;
+	private ControladorProveedores controladorProveedores;
+	private ControladorProductos controladorProductos;
+	private ControladorGastos controladorGastos;
 
 	public ControladorVistaPrincipal() {
+		// this.ControladorVistaGeneral = this;
 		this.setVistaPrincipal(new VistaPrincipal(this));
 		this.getVistaPrincipal().setVisible(true);
 
-		this.setControladorC(new ControladorConfig());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorC().getVistaC(), 0, 2);
-		this.getControladorC().getVistaC().setVisible(false);
+		this.setControladorConfig(new ControladorConfig());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorConfig().getVistaConfig(), 0, 2);
+		this.getControladorConfig().getVistaConfig().setVisible(false);
 
-		this.setControladorNC(new ControladorNuevoConsumo());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorNC().getVistaNC(), 0, 3);
-		this.getControladorNC().getVistaNC().setVisible(false);
+		this.setControladorNuevoConsumo(new ControladorNuevoConsumo());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorNuevoConsumo().getVistaNuevoConsumo(), 0, 3);
+		this.getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
 
-		this.setControladorPV(new ControladorProveedores());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorPV().getVistaPV(), 0, 4);
-		this.getControladorPV().getVistaPV().setVisible(false);
+		this.setControladorProveedores(new ControladorProveedores());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorProveedores().getVistaProveedores(), 0, 4);
+		this.getControladorProveedores().getVistaProveedores().setVisible(false);
 
-		this.setControladorP(new ControladorProductos());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorP().getVistaProductos(), 0, 5);
-		this.getControladorP().getVistaProductos().setVisible(false);
+		this.setControladorProductos(new ControladorProductos());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorProductos().getVistaProductos(), 0, 5);
+		this.getControladorProductos().getVistaProductos().setVisible(false);
 
-		this.setControladorG(new ControladorGastos());
-		this.getVistaPrincipal().getPanelVistas().add(getControladorG().getVistaGastos(), 0, 6);
-		this.getControladorG().getVistaGastos().setVisible(false);
+		this.setControladorGastos(new ControladorGastos());
+		this.getVistaPrincipal().getPanelVistas().add(getControladorGastos().getVistaGastos(), 0, 6);
+		this.getControladorGastos().getVistaGastos().setVisible(false);
 
 	}
 
@@ -54,59 +54,58 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnNuevoConsumo())) {
 			getVistaPrincipal().getLblTitulo().setText("NUEVO CONSUMO");
-			getControladorNC().getVistaNC().setVisible(true);
-			getControladorC().getVistaC().setVisible(false);
-			getControladorPV().getVistaPV().setVisible(false);
-			getControladorP().getVistaProductos().setVisible(false);
-			getControladorG().getVistaGastos().setVisible(false);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(true);
+			getControladorConfig().getVistaConfig().setVisible(false);
+			getControladorProveedores().getVistaProveedores().setVisible(false);
+			getControladorProductos().getVistaProductos().setVisible(false);
+			getControladorGastos().getVistaGastos().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnProductos())) {
 			getVistaPrincipal().getLblTitulo().setText("BEBIDAS");
-			getControladorP().getVistaProductos().setVisible(true);
-			getControladorPV().getVistaPV().setVisible(false);
-			getControladorNC().getVistaNC().setVisible(false);
-			getControladorC().getVistaC().setVisible(false);
-			getControladorG().getVistaGastos().setVisible(false);
+			getControladorProductos().getVistaProductos().setVisible(true);
+			getControladorProveedores().getVistaProveedores().setVisible(false);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
+			getControladorConfig().getVistaConfig().setVisible(false);
+			getControladorGastos().getVistaGastos().setVisible(false);
 		}
 		if (e.getSource().equals(getVistaPrincipal().getBtnProveedores())) {
 			getVistaPrincipal().getLblTitulo().setText("PROVEEDORES");
-			getControladorPV().getVistaPV().setVisible(true);
-			getControladorNC().getVistaNC().setVisible(false);
-			getControladorC().getVistaC().setVisible(false);
-			getControladorP().getVistaProductos().setVisible(false);
-			getControladorG().getVistaGastos().setVisible(false);
+			getControladorProveedores().getVistaProveedores().setVisible(true);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
+			getControladorConfig().getVistaConfig().setVisible(false);
+			getControladorProductos().getVistaProductos().setVisible(false);
+			getControladorGastos().getVistaGastos().setVisible(false);
 
 		}
 		if (e.getSource().equals(getVistaPrincipal().getBtnGastos())) {
 			getVistaPrincipal().getLblTitulo().setText("GASTOS");
-			getControladorG().getVistaGastos().setVisible(true);
-			getControladorP().getVistaProductos().setVisible(false);
-			getControladorPV().getVistaPV().setVisible(false);
-			getControladorNC().getVistaNC().setVisible(false);
-			getControladorC().getVistaC().setVisible(false);
+			getControladorGastos().getVistaGastos().setVisible(true);
+			getControladorProductos().getVistaProductos().setVisible(false);
+			getControladorProveedores().getVistaProveedores().setVisible(false);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
+			getControladorConfig().getVistaConfig().setVisible(false);
 
 		}
 		if (e.getSource().equals(getVistaPrincipal().getBtnConfiguracion())) {
 			getVistaPrincipal().getLblTitulo().setText("CONFIGURACIÓN");
-			getControladorC().getVistaC().setVisible(true);
-			getControladorNC().getVistaNC().setVisible(false);
-			getControladorPV().getVistaPV().setVisible(false);
-			getControladorP().getVistaProductos().setVisible(false);
-			getControladorG().getVistaGastos().setVisible(false);
+			getControladorConfig().getVistaConfig().setVisible(true);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
+			getControladorProveedores().getVistaProveedores().setVisible(false);
+			getControladorProductos().getVistaProductos().setVisible(false);
+			getControladorGastos().getVistaGastos().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnRegistrarUsuario())) {
 			new ControladorVistaNuevoUsuario();
-			getControladorC().getVistaC().setVisible(false);
-			getControladorNC().getVistaNC().setVisible(false);
-			getControladorPV().getVistaPV().setVisible(false);
-			getControladorP().getVistaProductos().setVisible(false);
-			getControladorG().getVistaGastos().setVisible(false);
+			getControladorConfig().getVistaConfig().setVisible(false);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
+			getControladorProveedores().getVistaProveedores().setVisible(false);
+			getControladorProductos().getVistaProductos().setVisible(false);
+			getControladorGastos().getVistaGastos().setVisible(false);
 		}
 
 		if (e.getSource().equals(getVistaPrincipal().getBtnLogout())) {
-			// CARTEL SI ESTA SEGURO PARA CONFIRMAR
 			Object[] opciones = { "Si", "No" };
 			Integer res = JOptionPane.showOptionDialog(getVistaPrincipal(), "¿Está seguro que desea cerrar sesión?",
 					"Atención", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
@@ -118,13 +117,6 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 				getVistaPrincipal().dispose();
 				new ControladorVistaInicial();
 			}
-
-			/*
-			 * if(JOptionPane.showConfirmDialog(getVistaPrincipal(),
-			 * "¿Está seguro que desea cerrar sesión?",
-			 * "Atención",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-			 * getVistaPrincipal().dispose(); new ControladorVistaInicial(); }
-			 */
 		}
 
 	}
@@ -132,19 +124,21 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 	@Override
 	public void windowStateChanged(WindowEvent e) {
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.MAXIMIZED_BOTH) {
-			getControladorC().getVistaC().setBounds(0, 0, 1200, 700);
-			getControladorNC().getVistaNC().setBounds(0, 0, 1200, 700);
-			getControladorP().getVistaProductos().setBounds(0, 0, 1200, 700);
-			getControladorPV().getVistaPV().setBounds(0, 0, 1200, 700);
-			getControladorG().getVistaGastos().setBounds(0, 0, 1200, 700);
+
+			getControladorConfig().getVistaConfig().setBounds(0, 0, 1200, 700);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setBounds(0, 0, 1200, 700);
+			getControladorProductos().getVistaProductos().setBounds(0, 0, 1200, 700);
+			getControladorProveedores().getVistaProveedores().setBounds(0, 0, 1200, 700);
+			getControladorGastos().getVistaGastos().setBounds(0, 0, 1200, 700);
 
 		}
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.NORMAL) {
-			getControladorC().getVistaC().setBounds(0, 0, 858, 444);
-			getControladorNC().getVistaNC().setBounds(0, 0, 858, 444);
-			getControladorP().getVistaProductos().setBounds(0, 0, 858, 444);
-			getControladorPV().getVistaPV().setBounds(0, 0, 858, 444);
-			getControladorG().getVistaGastos().setBounds(0, 0, 858, 444);
+
+			getControladorConfig().getVistaConfig().setBounds(0, 0, 858, 444);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setBounds(0, 0, 858, 444);
+			getControladorProductos().getVistaProductos().setBounds(0, 0, 858, 444);
+			getControladorProveedores().getVistaProveedores().setBounds(0, 0, 858, 444);
+			getControladorGastos().getVistaGastos().setBounds(0, 0, 858, 444);
 
 		}
 
@@ -167,52 +161,44 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		this.vistaPrincipal = vistaPrincipal;
 	}
 
-	public ControladorConfig getControladorC() {
-		return controladorC;
+	public ControladorConfig getControladorConfig() {
+		return controladorConfig;
 	}
 
-	public void setControladorC(ControladorConfig controladorC) {
-		this.controladorC = controladorC;
+	public void setControladorConfig(ControladorConfig controladorConfig) {
+		this.controladorConfig = controladorConfig;
 	}
 
-	public ControladorNuevoConsumo getControladorNC() {
-		return controladorNC;
+	public ControladorNuevoConsumo getControladorNuevoConsumo() {
+		return controladorNuevoConsumo;
 	}
 
-	public void setControladorNC(ControladorNuevoConsumo controladorNC) {
-		this.controladorNC = controladorNC;
+	public void setControladorNuevoConsumo(ControladorNuevoConsumo controladorNuevoConsumo) {
+		this.controladorNuevoConsumo = controladorNuevoConsumo;
 	}
 
-	public ControladorAgregarProducto getControladorAP() {
-		return controladorAP;
+	public ControladorProveedores getControladorProveedores() {
+		return controladorProveedores;
 	}
 
-	public void setControladorAP(ControladorAgregarProducto controladorAP) {
-		this.controladorAP = controladorAP;
+	public void setControladorProveedores(ControladorProveedores controladorProveedores) {
+		this.controladorProveedores = controladorProveedores;
 	}
 
-	public ControladorProveedores getControladorPV() {
-		return controladorPV;
+	public ControladorProductos getControladorProductos() {
+		return controladorProductos;
 	}
 
-	public void setControladorPV(ControladorProveedores controladorPV) {
-		this.controladorPV = controladorPV;
+	public void setControladorProductos(ControladorProductos controladorProductos) {
+		this.controladorProductos = controladorProductos;
 	}
 
-	public ControladorProductos getControladorP() {
-		return controladorP;
+	public ControladorGastos getControladorGastos() {
+		return controladorGastos;
 	}
 
-	public void setControladorP(ControladorProductos controladorP) {
-		this.controladorP = controladorP;
-	}
-
-	public ControladorGastos getControladorG() {
-		return controladorG;
-	}
-
-	public void setControladorG(ControladorGastos controladorG) {
-		this.controladorG = controladorG;
+	public void setControladorGastos(ControladorGastos controladorGastos) {
+		this.controladorGastos = controladorGastos;
 	}
 
 }

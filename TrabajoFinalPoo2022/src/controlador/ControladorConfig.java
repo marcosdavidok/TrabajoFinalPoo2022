@@ -14,12 +14,12 @@ import vista.VistaConfig;
 
 public class ControladorConfig implements ActionListener {
 
-	private VistaConfig vistaC;
+	private VistaConfig vistaConfig;
 	private Gson gson;
 
 	public ControladorConfig() {
-		this.setVistaC(new VistaConfig(this));
-		this.getVistaC().setVisible(true);
+		this.setVistaConfig(new VistaConfig(this));
+		this.getVistaConfig().setVisible(true);
 		this.abrirGson();
 	}
 
@@ -29,11 +29,11 @@ public class ControladorConfig implements ActionListener {
 			Gson gson = new Gson();
 			Empresa empresa = gson.fromJson(reader, Empresa.class);
 
-			getVistaC().getTextFieldCodigoPostal().setText(empresa.getCodigoPostal());
-			getVistaC().getTextFieldDireccion().setText(empresa.getDireccion());
-			getVistaC().getTextFieldLocalidad().setText(empresa.getLocalidad());
-			getVistaC().getTextFieldRazonSocial().setText(empresa.getRazonSocial());
-			getVistaC().getTextFieldTelefono().setText(empresa.getTelefono());
+			getVistaConfig().getTextFieldCodigoPostal().setText(empresa.getCodigoPostal());
+			getVistaConfig().getTextFieldDireccion().setText(empresa.getDireccion());
+			getVistaConfig().getTextFieldLocalidad().setText(empresa.getLocalidad());
+			getVistaConfig().getTextFieldRazonSocial().setText(empresa.getRazonSocial());
+			getVistaConfig().getTextFieldTelefono().setText(empresa.getTelefono());
 
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
@@ -43,9 +43,9 @@ public class ControladorConfig implements ActionListener {
 	}
 
 	private void guardarGson() {
-		Empresa empresa = new Empresa(getVistaC().getTextFieldRazonSocial().getText(),
-				getVistaC().getTextFieldLocalidad().getText(), getVistaC().getTextFieldDireccion().getText(),
-				getVistaC().getTextFieldCodigoPostal().getText(), getVistaC().getTextFieldTelefono().getText());
+		Empresa empresa = new Empresa(getVistaConfig().getTextFieldRazonSocial().getText(),
+				getVistaConfig().getTextFieldLocalidad().getText(), getVistaConfig().getTextFieldDireccion().getText(),
+				getVistaConfig().getTextFieldCodigoPostal().getText(), getVistaConfig().getTextFieldTelefono().getText());
 
 		setGson(new Gson());
 		String json = gson.toJson(empresa);
@@ -54,7 +54,7 @@ public class ControladorConfig implements ActionListener {
 
 			file.write(json);
 
-			JOptionPane.showMessageDialog(vistaC, "DATOS GUARDADOS CORRECTAMENTE");
+			JOptionPane.showMessageDialog(vistaConfig, "DATOS GUARDADOS CORRECTAMENTE");
 
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -64,17 +64,17 @@ public class ControladorConfig implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(getVistaC().getBtnGuardar())) {
+		if (e.getSource().equals(getVistaConfig().getBtnGuardar())) {
 			this.guardarGson();
 		}
 	}
 
-	public VistaConfig getVistaC() {
-		return vistaC;
+	public VistaConfig getVistaConfig() {
+		return vistaConfig;
 	}
 
-	public void setVistaC(VistaConfig vistaC) {
-		this.vistaC = vistaC;
+	public void setVistaConfig(VistaConfig vistaConfig) {
+		this.vistaConfig = vistaConfig;
 	}
 
 	public Gson getGson() {
