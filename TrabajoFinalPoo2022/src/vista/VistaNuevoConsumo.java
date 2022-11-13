@@ -21,20 +21,29 @@ import java.awt.Color;
 public class VistaNuevoConsumo extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JButton btnAgregar, btnLimpiar, btnBorrar, btnBuscar, btnRegistrar;
-	private JTextField textFieldCodigo, textFieldCantidad, textFieldPrecio, textFieldStock, textFieldProducto;
+
+	private JTextField textFieldCodigo;
+	private JTextField textFieldCantidad;
+	private JTextField textFieldPrecio;
+	private JTextField textFieldStock;
+	private JButton btnLimpiar;
 	private DefaultTableModel modeloTabla;
-	private JLabel lblTotalAPagar, lblPrecioTotal;
+	private JButton btnRegistrar;
+	private JLabel lblTotalAPagar;
+	private JLabel lblPrecioTotal;
+	private JButton btnAgregar;
 	private JTable table;
+	private JButton btnBorrar;
+	private JTextField textFieldProducto;
+	private JButton btnBuscar;
 	private ControladorNuevoConsumo controlador;
 
 	public VistaNuevoConsumo(ControladorNuevoConsumo controlador) {
 		this.setControlador(controlador);
 
-		setBackground(new Color(255, 220, 138));
+		setBackground(new Color(145, 139, 173));
 		setBounds(0, 0, 860, 444);
-
-		///////////////////////////////////////// BOTONES/////////////////////////////////////////
+///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(this.getControlador());
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -53,13 +62,13 @@ public class VistaNuevoConsumo extends JPanel {
 		btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnRegistrar.addActionListener(this.getControlador());
-		ImageIcon imgBtnRegistrar = this.ajustarImagen(
+		ImageIcon imgBtnImprimir = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Impresora.png")).getImage(), 20, 20);
-		btnRegistrar.setIcon(imgBtnRegistrar);
+		btnRegistrar.setIcon(imgBtnImprimir);
 
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBackground(new Color(189, 0, 3));
-		btnBorrar.setForeground(Color.BLACK);
+		//btnBorrar.setBackground(new Color(204, 0, 51));
+		//btnBorrar.setForeground(new Color(255, 255, 255));
 		btnBorrar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		ImageIcon imgBtnBorrar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Eliminar.png")).getImage(), 20, 20);
@@ -109,7 +118,7 @@ public class VistaNuevoConsumo extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		lblTotalAPagar = new JLabel("Total a Pagar:");
+		lblTotalAPagar = new JLabel("Total gastado:");
 		lblTotalAPagar.setFont(new Font("Dialog", Font.BOLD, 14));
 
 		lblPrecioTotal = new JLabel("0");

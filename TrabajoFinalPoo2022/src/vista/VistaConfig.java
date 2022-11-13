@@ -24,12 +24,11 @@ public class VistaConfig extends JPanel {
 
 		this.setControlador(controlador);
 
-		setBackground(new Color(255, 220, 138));
+		setBackground(new Color(145, 139, 173));
 		setBounds(0, 0, 858, 444);
 
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnLimpiar = new JButton("LIMPIAR");
-		btnLimpiar.setBackground(new Color(192, 192, 192));
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		ImageIcon imgBtnLimpiar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Limpiar.png")).getImage(), 20, 20);
@@ -37,7 +36,6 @@ public class VistaConfig extends JPanel {
 		this.btnLimpiar.addActionListener(getControlador());
 
 		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBackground(new Color(102, 204, 51));
 		btnGuardar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		ImageIcon imgBtnGuardar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Guardar.png")).getImage(), 20, 20);

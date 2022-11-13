@@ -30,15 +30,12 @@ public class VistaProveedores extends JPanel {
 	protected DefaultTableModel ModeloTabla;
 
 	public VistaProveedores(ControladorProveedores controladorProveedor) {
-
 		this.setControladorProveedor(controladorProveedor);
-		setBackground(new Color(255, 220, 138));
+		setBackground(new Color(145, 139, 173));
 		setBounds(0, 0, 858, 444);
 		JScrollPane scrollPane = new JScrollPane();
-
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBackground(new Color(51, 204, 51));
 		btnGuardar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnGuardar.addActionListener(getControladorProveedor());
 		ImageIcon imgBtnGuardar = this.ajustarImagen(
@@ -48,6 +45,7 @@ public class VistaProveedores extends JPanel {
 		btnLimpiar = new JButton("LIMPIAR");
 		btnLimpiar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnLimpiar.addActionListener(getControladorProveedor());
+
 		ImageIcon imgBtnLimpiar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Limpiar.png")).getImage(), 20, 20);
 		btnLimpiar.setIcon(imgBtnLimpiar);
@@ -88,7 +86,7 @@ public class VistaProveedores extends JPanel {
 		lblCuit = new JLabel("CUIT");
 		lblCuit.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldCuit = new JTextField();
-		textFieldCuit.setColumns(10);
+		textFieldCuit.setColumns(11);
 		textFieldCuit.addFocusListener(getControladorProveedor());
 		textFieldCuit.addKeyListener(getControladorProveedor());
 
@@ -206,6 +204,7 @@ public class VistaProveedores extends JPanel {
 		String encabezado[] = { "CUIT", "Nombre", "Telefono", "Direccion", "Razon Social" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
+
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {
@@ -217,6 +216,7 @@ public class VistaProveedores extends JPanel {
 		scrollPane.setViewportView(table);
 		this.setLayout(groupLayout);
 		table.addMouseListener(getControladorProveedor());
+
 	}
 
 	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
@@ -264,6 +264,14 @@ public class VistaProveedores extends JPanel {
 		this.textFieldCuit = textFieldCuit;
 	}
 
+	public JButton getBtnLimpiar() {
+		return btnLimpiar;
+	}
+
+	public void setBtnLimpiar(JButton btnLimpiar) {
+		this.btnLimpiar = btnLimpiar;
+	}
+
 	public JTextField getTextFieldNombre() {
 		return textFieldNombre;
 	}
@@ -294,14 +302,6 @@ public class VistaProveedores extends JPanel {
 
 	public void setBtnGuardar(JButton btnGuardar) {
 		this.btnGuardar = btnGuardar;
-	}
-
-	public JButton getBtnLimpiar() {
-		return btnLimpiar;
-	}
-
-	public void setBtnLimpiar(JButton btnLimpiar) {
-		this.btnLimpiar = btnLimpiar;
 	}
 
 	public JButton getBtnModificar() {

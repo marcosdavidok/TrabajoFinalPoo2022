@@ -38,21 +38,32 @@ public class VistaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1064, 655);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 186, 107));
+		contentPane.setBackground(new Color(188, 180, 224));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		this.setLocationRelativeTo(null); // Para centrar
 
 		JPanel panel_titulo = new JPanel();
-		panel_titulo.setBackground(new Color(255, 220, 138));
+		panel_titulo.setBackground(new Color(145, 139, 173));
 
 		lblTitulo = new JLabel("DRINK COUNTER");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setForeground(Color.GRAY);
+		lblTitulo.setForeground(new Color(47, 45, 56));
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 60));
 		panel_titulo.add(lblTitulo);
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
+		btnRegistrarUsuario = new JButton("Nuevo Usuario");
+		btnRegistrarUsuario.setForeground(new Color(47, 45, 56));
+		btnRegistrarUsuario.setBackground(new Color(136, 115, 230));
+		btnRegistrarUsuario.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 12));
+		btnRegistrarUsuario.addActionListener(getControlador());
+		ImageIcon imgBtnRegistrarUsuario = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/NuevoUsuario.png")).getImage(), 40, 40);
+		btnRegistrarUsuario.setIcon(imgBtnRegistrarUsuario);
+
 		btnProveedores = new JButton("Proveedores");
+		btnProveedores.setForeground(new Color(47, 45, 56));
+		btnProveedores.setBackground(new Color(136, 115, 230));
 		btnProveedores.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnProveedores.addActionListener(getControlador());
 		ImageIcon imgBtnProveedores = this.ajustarImagen(
@@ -60,6 +71,8 @@ public class VistaPrincipal extends JFrame {
 		btnProveedores.setIcon(imgBtnProveedores);
 
 		btnProductos = new JButton("Bebidas");
+		btnProductos.setForeground(new Color(47, 45, 56));
+		btnProductos.setBackground(new Color(136, 115, 230));
 		btnProductos.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnProductos.addActionListener(getControlador());
 		ImageIcon imgBtnProductos = this.ajustarImagen(
@@ -67,6 +80,8 @@ public class VistaPrincipal extends JFrame {
 		btnProductos.setIcon(imgBtnProductos);
 
 		btnGastos = new JButton("Gastos");
+		btnGastos.setForeground(new Color(47, 45, 56));
+		btnGastos.setBackground(new Color(136, 115, 230));
 		btnGastos.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnGastos.addActionListener(getControlador());
 		ImageIcon imgBtnGastos = this.ajustarImagen(
@@ -74,6 +89,8 @@ public class VistaPrincipal extends JFrame {
 		btnGastos.setIcon(imgBtnGastos);
 
 		btnConfiguracion = new JButton("Config");
+		btnConfiguracion.setForeground(new Color(47, 45, 56));
+		btnConfiguracion.setBackground(new Color(136, 115, 230));
 		btnConfiguracion.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnConfiguracion.addActionListener(getControlador());
 		ImageIcon imgBtnConfiguracion = this.ajustarImagen(
@@ -81,6 +98,8 @@ public class VistaPrincipal extends JFrame {
 		btnConfiguracion.setIcon(imgBtnConfiguracion);
 
 		btnNuevoConsumo = new JButton("Consumo");
+		btnNuevoConsumo.setForeground(new Color(47, 45, 56));
+		btnNuevoConsumo.setBackground(new Color(136, 115, 230));
 		btnNuevoConsumo.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnNuevoConsumo.addActionListener(getControlador());
 		ImageIcon imgBtnNuevoConsumo = this.ajustarImagen(
@@ -88,18 +107,11 @@ public class VistaPrincipal extends JFrame {
 		btnNuevoConsumo.setIcon(imgBtnNuevoConsumo);
 
 		panelVistas = new JLayeredPane();
-		panelVistas.setBackground(new Color(255, 220, 138));
-
-		btnRegistrarUsuario = new JButton("Nuevo Usuario");
-		btnRegistrarUsuario.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 12));
-		btnRegistrarUsuario.addActionListener(getControlador());
-		ImageIcon imgBtnRegistrarUsuario = this.ajustarImagen(
-				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/NuevoUsuario.png")).getImage(), 40, 40);
-		btnRegistrarUsuario.setIcon(imgBtnRegistrarUsuario);
+		panelVistas.setBackground(new Color(145, 139, 173));
 
 		btnLogout = new JButton("Cerrar Sesión");
-		btnLogout.setForeground(new Color(255, 255, 255));
-		btnLogout.setBackground(new Color(204, 0, 51));
+		btnLogout.setForeground(new Color(47, 45, 56));
+		btnLogout.setBackground(new Color(136, 115, 230));
 		btnLogout.setHorizontalAlignment(SwingConstants.LEADING);
 		btnLogout.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 13));
 		btnLogout.addActionListener(getControlador());
@@ -124,7 +136,8 @@ public class VistaPrincipal extends JFrame {
 						.addGap(25)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
 				.createSequentialGroup()
-				.addComponent(panel_titulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addComponent(panel_titulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+						GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(ComponentPlacement.RELATED)

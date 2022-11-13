@@ -44,26 +44,29 @@ public class VistaInicial extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 483, 460);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 186, 107));
+		contentPane.setBackground(new Color(188, 180, 224));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		this.setLocationRelativeTo(null);
 
 		JPanel panel_titulo = new JPanel();
-		panel_titulo.setBackground(new Color(255, 220, 138));
+		panel_titulo.setBackground(new Color(145, 139, 173));
 
 		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario.setForeground(new Color(47, 45, 56));
 		lblUsuario.setFont(new Font("Dialog", Font.BOLD, 15));
-
 		textFieldUsuario = new JTextField();
 		textFieldUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldUsuario.setColumns(10);
 		textFieldUsuario.addFocusListener(getControlador());
 
 		JLabel lblContraseña = new JLabel("Contraseña");
+		lblContraseña.setForeground(new Color(47, 45, 56));
 		lblContraseña.setFont(new Font("Dialog", Font.BOLD, 15));
 
 		btnIngresar = new JButton("Ingresar");
+		btnIngresar.setForeground(new Color(47, 45, 56));
+		btnIngresar.setBackground(new Color(136, 115, 230));
 		btnIngresar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnIngresar.addActionListener(getControlador());
 
@@ -122,7 +125,7 @@ public class VistaInicial extends JFrame {
 								.addGap(46)))));
 
 		JLabel lblTitulo = new JLabel("DRINK COUNTER - LOGIN");
-		lblTitulo.setForeground(Color.GRAY);
+		lblTitulo.setForeground(new Color(47, 45, 56));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 18));
 		panel_titulo.add(lblTitulo);

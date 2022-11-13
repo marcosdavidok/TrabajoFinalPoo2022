@@ -36,7 +36,7 @@ public class VistaGastos extends JPanel {
 
 		this.setControladorVentas(controladorGastos);
 
-		setBackground(new Color(255, 220, 138));
+		setBackground(new Color(145, 139, 173));
 		setBounds(0, 0, 860, 444);
 
 		JScrollPane scrollPane = new JScrollPane();
