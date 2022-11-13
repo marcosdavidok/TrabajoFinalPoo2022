@@ -154,7 +154,16 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 					|| getVistaPV().getTextFieldRazonSocial().getText().isEmpty()) {
 				JOptionPane.showMessageDialog(vistaPV, "Ingrese todos los datos.");
 			} else {
-				this.guardar(getProveedores(), getProveedorDao(), getVistaPV());
+				Object[] opciones = { "Si", "No" };
+				Integer res = JOptionPane.showOptionDialog(getVistaPV(), "¿Seguro que desea agregar al proveedor?",
+						"Atención", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Nuevo.png")).getImage(), 44,
+								44),
+						opciones, opciones[0]);
+				if (res == 0) {
+					this.guardar(getProveedores(), getProveedorDao(), getVistaPV());
+				}
 			}
 			this.desactivarBotones(getVistaPV());
 		}
@@ -172,8 +181,17 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 					|| getVistaPV().getTextFieldRazonSocial().getText().isEmpty()) {
 				JOptionPane.showMessageDialog(vistaPV, "Ingrese todos los datos.");
 			} else {
-				this.modificar(getProveedores(), getProveedorDao(), getVistaPV());
-				this.desactivarBotones(getVistaPV());
+				Object[] opciones = { "Si", "No" };
+				Integer res = JOptionPane.showOptionDialog(getVistaPV(), "¿Seguro que desea modificar al proveedor?",
+						"Atención", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Modificar.png")).getImage(),
+								44, 44),
+						opciones, opciones[0]);
+				if (res == 0) {
+					this.modificar(getProveedores(), getProveedorDao(), getVistaPV());
+					this.desactivarBotones(getVistaPV());
+				}
 			}
 		}
 
