@@ -38,7 +38,6 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 	}
 
 	private Object[] obtenerProveedor(Proveedor proveedor) {
-
 		Object[] fila = { Integer.valueOf(proveedor.getCuit()), proveedor.getNombre(),
 				Integer.valueOf(proveedor.getTelefono()), proveedor.getDireccion(), proveedor.getRazon_social() };
 		return fila;
@@ -68,30 +67,22 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 	}
 
 	public void guardar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
-		if (vistaPV.getTextFieldCuit().getText().equals("") || vistaPV.getTextFieldNombre().getText().equals("")
-				|| vistaPV.getTextFieldDireccion().getText().equals("")
-				|| vistaPV.getTextFieldRazonSocial().getText().equals("")
-				|| vistaPV.getTextFieldTelefono().getText().equals("")) {
-			JOptionPane.showMessageDialog(vistaPV, "Ingrese todos los datos del proveedor.");
+		Proveedor proveedor = new Proveedor(Integer.valueOf(vistaPV.getTextFieldCuit().getText()),
+				vistaPV.getTextFieldNombre().getText(), Integer.valueOf(vistaPV.getTextFieldTelefono().getText()),
+				vistaPV.getTextFieldDireccion().getText(), vistaPV.getTextFieldRazonSocial().getText());
+
+		if ((proveedorDao.get(vistaPV.getTextFieldCuit().getText())) != null) {
+			JOptionPane.showMessageDialog(vistaPV, "Ya existe este proveedor. Ingrese un CUIT diferente.");
 		} else {
-
-			Proveedor proveedor = new Proveedor(Integer.valueOf(vistaPV.getTextFieldCuit().getText()),
-					vistaPV.getTextFieldNombre().getText(), Integer.valueOf(vistaPV.getTextFieldTelefono().getText()),
-					vistaPV.getTextFieldDireccion().getText(), vistaPV.getTextFieldRazonSocial().getText());
-
-			if ((proveedorDao.get(vistaPV.getTextFieldCuit().getText())) != null) {
-				JOptionPane.showMessageDialog(vistaPV, "Ya existe este proveedor. Ingrese un CUIT diferente.");
-			} else {
-				this.vaciarTabla(vistaPV);
-				proveedorDao.insert(proveedor);
-				proveedores = proveedorDao.getAll();
-				pasarATabla(proveedores, proveedorDao, vistaPV);
-			}
+			this.vaciarTabla(vistaPV);
+			proveedorDao.insert(proveedor);
+			proveedores = proveedorDao.getAll();
+			pasarATabla(proveedores, proveedorDao, vistaPV);
 		}
+
 	}
 
 	public void modificar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
-
 		Proveedor proveedor = new Proveedor(
 				Integer.valueOf(vistaPV.getModeloTabla().getValueAt(vistaPV.getTable().getSelectedRow(), 0).toString()),
 				vistaPV.getTextFieldNombre().getText(), Integer.valueOf(vistaPV.getTextFieldTelefono().getText()),
@@ -101,7 +92,6 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		proveedorDao.update(proveedor);
 		proveedores = proveedorDao.getAll();
 		pasarATabla(proveedores, proveedorDao, vistaPV);
-
 	}
 
 	public void eliminar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
@@ -143,18 +133,22 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		}
 	}
 
+	public boolean consistenciaDatosCompletos() {
+		if (getVistaProveedores().getTextFieldCuit().getText().isEmpty()
+				|| getVistaProveedores().getTextFieldNombre().getText().isEmpty()
+				|| getVistaProveedores().getTextFieldDireccion().getText().isEmpty()
+				|| getVistaProveedores().getTextFieldTelefono().getText().isEmpty()
+				|| getVistaProveedores().getTextFieldRazonSocial().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(vistaProveedores, "Ingrese todos los datos del proveedor.");
+			return false;
+		}
+		return true;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		if (e.getSource().equals(getVistaProveedores().getBtnGuardar())) {
-			if (getVistaProveedores().getTextFieldCuit().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldNombre().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldDireccion().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldTelefono().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldRazonSocial().getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vistaProveedores, "Ingrese todos los datos.");
-			} else {
-
+			if (this.consistenciaDatosCompletos() == true) {
 				Object[] opciones = { "Si", "No" };
 				Integer res = JOptionPane.showOptionDialog(getVistaProveedores(),
 						"¿Seguro que desea agregar al proveedor?", "Atención", JOptionPane.DEFAULT_OPTION,
@@ -176,13 +170,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		}
 
 		if (e.getSource().equals(getVistaProveedores().getBtnModificar())) {
-			if (getVistaProveedores().getTextFieldCuit().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldNombre().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldDireccion().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldTelefono().getText().isEmpty()
-					|| getVistaProveedores().getTextFieldRazonSocial().getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vistaProveedores, "Ingrese todos los datos.");
-			} else {
+			if (this.consistenciaDatosCompletos() == true) {
 				Object[] opciones = { "Si", "No" };
 				Integer res = JOptionPane.showOptionDialog(getVistaProveedores(),
 						"¿Seguro que desea modificar al proveedor?", "Atención", JOptionPane.DEFAULT_OPTION,
@@ -195,7 +183,6 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 					this.modificar(getProveedores(), getProveedorDao(), getVistaProveedores());
 					this.desactivarBotones(getVistaProveedores());
 				}
-
 			}
 		}
 
@@ -211,7 +198,6 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 			if (res == 0) {
 				this.eliminar(getProveedores(), getProveedorDao(), getVistaProveedores());
 				this.desactivarBotones(getVistaProveedores());
-
 			}
 		}
 
@@ -229,12 +215,10 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 	public void keyTyped(KeyEvent e) {
 		if (getVistaProveedores().getTextFieldTelefono().isFocusOwner()
 				|| getVistaProveedores().getTextFieldCuit().isFocusOwner()) {
-
 			char caracter = e.getKeyChar();
 			if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) { // para que se ingrese solamente numeros
 				e.consume(); // para que no se pueda escribir
 			}
-
 		}
 
 		if (getVistaProveedores().getTextFieldCuit().isFocusOwner()) {
@@ -248,9 +232,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				JOptionPane.showMessageDialog(vistaProveedores, "No es posible ingresar mas digitos.");
 				e.consume();
 			}
-
 		}
-
 	}
 
 	@Override
@@ -260,7 +242,6 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				getVistaProveedores().getBtnBuscar().doClick();
 			}
 		}
-
 	}
 
 	@Override
