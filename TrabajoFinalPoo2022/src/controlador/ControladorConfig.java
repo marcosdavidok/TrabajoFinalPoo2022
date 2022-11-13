@@ -45,7 +45,8 @@ public class ControladorConfig implements ActionListener {
 	private void guardarGson() {
 		Empresa empresa = new Empresa(getVistaConfig().getTextFieldRazonSocial().getText(),
 				getVistaConfig().getTextFieldLocalidad().getText(), getVistaConfig().getTextFieldDireccion().getText(),
-				getVistaConfig().getTextFieldCodigoPostal().getText(), getVistaConfig().getTextFieldTelefono().getText());
+				getVistaConfig().getTextFieldCodigoPostal().getText(),
+				getVistaConfig().getTextFieldTelefono().getText());
 
 		setGson(new Gson());
 		String json = gson.toJson(empresa);
@@ -66,6 +67,13 @@ public class ControladorConfig implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(getVistaConfig().getBtnGuardar())) {
 			this.guardarGson();
+		}
+		if (e.getSource().equals(getVistaConfig().getBtnLimpiar())) {
+			vistaConfig.getTextFieldRazonSocial().setText(null);
+			vistaConfig.getTextFieldLocalidad().setText(null);
+			vistaConfig.getTextFieldCodigoPostal().setText(null);
+			vistaConfig.getTextFieldTelefono().setText(null);
+			vistaConfig.getTextFieldDireccion().setText(null);
 		}
 	}
 
