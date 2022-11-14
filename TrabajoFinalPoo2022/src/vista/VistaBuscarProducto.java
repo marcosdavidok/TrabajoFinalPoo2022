@@ -17,9 +17,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controlador.ControladorAgregarProducto;
+import controlador.ControladorBuscarProducto;
 
-public class VistaAgregarProducto extends JFrame {
+public class VistaBuscarProducto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	protected DefaultTableModel ModeloTabla;
@@ -28,18 +28,18 @@ public class VistaAgregarProducto extends JFrame {
 	private JTextField textFieldBuscar;
 	private JButton btnBuscar;
 	private JButton btnAgregar;
-	private ControladorAgregarProducto controladorAgregarProducto;
+	private ControladorBuscarProducto controladorBuscarProducto;
 	private JLabel lblTitulo;
 	private JPanel panelTabla;
 
-	public VistaAgregarProducto(ControladorAgregarProducto controlador) {
+	public VistaBuscarProducto(ControladorBuscarProducto controlador) {
 
 		setResizable(false);
-		this.setControladorAgregarProducto(controlador);
+		this.setControladorBuscarProducto(controlador);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1074, 655);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 186, 107));
+		contentPane.setBackground(new Color(145, 139, 173));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -49,35 +49,38 @@ public class VistaAgregarProducto extends JFrame {
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setBounds(10, 0, 1038, 41);
 		contentPane.add(panelTitulo);
-		panelTitulo.setBackground(new Color(255, 220, 138));
+		panelTitulo.setBackground(new Color(188, 180, 224));
 		contentPane.add(panelTitulo);
 
 		lblTitulo = new JLabel("BUSCAR PRODUCTO");
-		lblTitulo.setForeground(new Color(255, 186, 107));
+		lblTitulo.setForeground(new Color(47, 45, 56));
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 35));
 		panelTitulo.add(lblTitulo);
 
 		panelTabla = new JPanel();
 		panelTabla.setBounds(10, 171, 1038, 445);
 		contentPane.add(panelTabla);
-
 		JScrollPane scrollPane = new JScrollPane();
-		panelTabla.setBackground(new Color(255, 220, 138));
+		panelTabla.setBackground(new Color(188, 180, 224));
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.setForeground(new Color(47, 45, 56));
+		btnBuscar.setBackground(new Color(136, 115, 230));
 		btnBuscar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnBuscar.addActionListener(getControladorAgregarProducto());
+		btnBuscar.addActionListener(getControladorBuscarProducto());
 		ImageIcon imgBtnBuscar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Buscar.png")).getImage(), 20, 20);
 		btnBuscar.setIcon(imgBtnBuscar);
 		textFieldBuscar = new JTextField();
 		textFieldBuscar.setColumns(10);
-		textFieldBuscar.addKeyListener(getControladorAgregarProducto());
+		textFieldBuscar.addKeyListener(getControladorBuscarProducto());
 
 		btnAgregar = new JButton("AGREGAR");
+		btnAgregar.setForeground(new Color(47, 45, 56));
+		btnAgregar.setBackground(new Color(136, 115, 230));
 		btnAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		btnAgregar.addActionListener(getControladorAgregarProducto());
-		btnAgregar.addKeyListener(getControladorAgregarProducto());
+		btnAgregar.addActionListener(getControladorBuscarProducto());
+		btnAgregar.addKeyListener(getControladorBuscarProducto());
 		ImageIcon imgBtnAgregar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Nuevo.png")).getImage(), 20, 20);
 		btnAgregar.setIcon(imgBtnAgregar);
@@ -114,8 +117,8 @@ public class VistaAgregarProducto extends JFrame {
 		table.setAutoCreateRowSorter(true);
 		scrollPane.setViewportView(table);
 		panelTabla.setLayout(groupLayout);
-		table.addMouseListener(getControladorAgregarProducto());
-		this.addWindowListener(getControladorAgregarProducto());
+		table.addMouseListener(getControladorBuscarProducto());
+		this.addWindowListener(getControladorBuscarProducto());
 
 	}
 
@@ -124,12 +127,12 @@ public class VistaAgregarProducto extends JFrame {
 		return imagen;
 	}
 
-	public ControladorAgregarProducto getControladorAgregarProducto() {
-		return controladorAgregarProducto;
+	public ControladorBuscarProducto getControladorBuscarProducto() {
+		return controladorBuscarProducto;
 	}
 
-	public void setControladorAgregarProducto(ControladorAgregarProducto controladorAgregarProducto) {
-		this.controladorAgregarProducto = controladorAgregarProducto;
+	public void setControladorBuscarProducto(ControladorBuscarProducto controladorBuscarProducto) {
+		this.controladorBuscarProducto = controladorBuscarProducto;
 	}
 
 	public DefaultTableModel getModeloTabla() {

@@ -48,7 +48,6 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 	}
 
 	private Object[] obtenerProducto(Producto producto) {
-
 		Object[] fila = { Integer.valueOf(producto.getCodigoProducto()), producto.getNombreProducto(),
 				Integer.valueOf(producto.getCantidad()), Double.valueOf(producto.getPrecioProducto()),
 				Integer.valueOf(producto.getCuitProveedor()) };
@@ -57,14 +56,11 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 
 	public void pasarATablas(ArrayList<Producto> productos) {
 		this.vaciarTabla();
-
 		this.setProductos(getProductoDao().getAll());
 		for (Producto producto : getProductos()) {
 
 			this.getVistaProductos().getModeloTabla().addRow(this.obtenerProducto(producto));
-
 		}
-
 	}
 
 	public void vaciarTabla() {
@@ -80,7 +76,6 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 				.setText(VistaP.getTable().getValueAt(VistaP.getTable().getSelectedRow(), 2).toString());
 		VistaP.getTextFieldPrecio()
 				.setText(VistaP.getTable().getValueAt(VistaP.getTable().getSelectedRow(), 3).toString());
-
 	}
 
 	private void buscarProducto() {
@@ -88,37 +83,38 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 		for (Producto producto : getProductos()) {
 			if (Pattern.compile(Pattern.quote(vistaProductos.getTextFieldBuscar().getText()), Pattern.CASE_INSENSITIVE)
 					.matcher(producto.getNombreProducto()).find()) {
-
 				getVistaProductos().getModeloTabla().addRow(this.obtenerProducto(producto));
 			}
-
 		}
 	}
 
 	private void guardarProducto() {
 		setProveedores(getProveedorDao().getAll());
-
 		Producto producto = new Producto(0, getVistaProductos().getTextFieldNombre().getText(),
 				Integer.valueOf(getVistaProductos().getTextFieldCantidad().getText()),
 				Double.valueOf(getVistaProductos().getTextFieldPrecio().getText()),
 				Integer.valueOf(getVistaProductos().getTextFieldProveedor().getText()));
-
 		this.getProductoDao().insert(producto);
 		this.setProductos(getProductoDao().getAll());
 		this.pasarATablas(getProductos());
+	}
 
+	private boolean consistenciaDatosCompletos() {
+		if (getVistaProductos().getTextFieldNombre().getText().isEmpty()
+				|| getVistaProductos().getTextFieldCantidad().getText().isEmpty()
+				|| getVistaProductos().getTextFieldPrecio().getText().isEmpty()
+				|| getVistaProductos().getTextFieldProveedor().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(vistaProductos, "Ingrese todos los datos del producto.");
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource().equals(getVistaProductos().getBtnGuardar())) {
-			if (getVistaProductos().getTextFieldNombre().getText().equals("")
-					|| getVistaProductos().getTextFieldCantidad().getText().equals("")
-					|| getVistaProductos().getTextFieldPrecio().getText().equals("")
-					|| getVistaProductos().getTextFieldProveedor().getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vistaProductos, "Ingrese todos los datos.");
-			} else {
+			if (this.consistenciaDatosCompletos() == true) {
 				Object[] opciones = { "Si", "No" };
 				Integer res = JOptionPane.showOptionDialog(getVistaProductos(),
 						"¿Seguro que desea agregar el producto?", "Atención", JOptionPane.DEFAULT_OPTION,
@@ -142,14 +138,7 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 		}
 
 		if (e.getSource().equals(getVistaProductos().getBtnModificar())) {
-			if (getVistaProductos().getTextFieldNombre().getText().isEmpty()
-					|| getVistaProductos().getTextFieldCantidad().getText().isEmpty()
-					|| getVistaProductos().getTextFieldPrecio().getText().isEmpty()
-					|| getVistaProductos().getTextFieldProveedor().getText().isEmpty()) {
-
-				JOptionPane.showMessageDialog(getVistaProductos(), "Ingrese todos los campos");
-
-			} else {
+			if (this.consistenciaDatosCompletos() == true) {
 				Object[] opciones = { "Si", "No" };
 				Integer res = JOptionPane.showOptionDialog(getVistaProductos(),
 						"¿Seguro que desea modificar el producto?", "Atención", JOptionPane.DEFAULT_OPTION,

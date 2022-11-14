@@ -34,13 +34,12 @@ public class VistaProductos extends JPanel {
 	public VistaProductos(ControladorProductos controladorProductos) {
 		this.setControladorProductos(controladorProductos);
 
-		setBackground(new Color(255, 220, 138));
+		setBackground(new Color(145, 139, 173));
 		setBounds(0, 0, 860, 444);
 		JScrollPane scrollPane = new JScrollPane();
 
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBackground(new Color(102, 204, 51));
 		btnGuardar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnGuardar.addActionListener(getControladorProductos());
 		ImageIcon imgBtnGuardar = this.ajustarImagen(
@@ -93,28 +92,28 @@ public class VistaProductos extends JPanel {
 		////////////////////////////////////////////////////////////////////////////////////////
 
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNombre.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 14));
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
 		textFieldNombre.addFocusListener(getControladorProductos());
 		textFieldNombre.addKeyListener(getControladorProductos());
 
 		lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblCantidad.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 14));
 		textFieldCantidad = new JTextField();
 		textFieldCantidad.setColumns(10);
 		textFieldCantidad.addFocusListener(getControladorProductos());
 		textFieldCantidad.addKeyListener(getControladorProductos());
 
 		lblPrecio = new JLabel("Precio");
-		lblPrecio.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblPrecio.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 14));
 		textFieldPrecio = new JTextField();
 		textFieldPrecio.setColumns(10);
 		textFieldPrecio.addFocusListener(getControladorProductos());
 		textFieldPrecio.addKeyListener(getControladorProductos());
 
 		lblProveedor = new JLabel("Proveedor");
-		lblProveedor.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblProveedor.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 14));
 		textFieldProveedor = new JTextField();
 		textFieldProveedor.setColumns(10);
 		textFieldProveedor.setEnabled(false);
@@ -207,7 +206,7 @@ public class VistaProductos extends JPanel {
 						.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 				.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(6)));
 
-		String encabezado[] = { "Código", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
+		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
 
@@ -302,11 +301,11 @@ public class VistaProductos extends JPanel {
 		this.textFieldCantidad = textFieldCantidad;
 	}
 
-	public JTextField getTextFieldPrecio() {
+	public JTextField getTextFieldPrecio() {//
 		return textFieldPrecio;
 	}
 
-	public void setTextFieldPrecio(JTextField textFieldPrecio) {
+	public void setTextFieldPrecio(JTextField textFieldPrecio) {//
 		this.textFieldPrecio = textFieldPrecio;
 	}
 
@@ -318,19 +317,19 @@ public class VistaProductos extends JPanel {
 		this.btnImprimir = btnImprimir;
 	}
 
-	public JButton getBtnBuscarProveedor() {
+	public JButton getBtnBuscarProveedor() {//
 		return btnBuscarProveedor;
 	}
 
-	public void setBtnBuscarProveedor(JButton btnBuscar) {
+	public void setBtnBuscarProveedor(JButton btnBuscar) {//
 		this.btnBuscarProveedor = btnBuscar;
 	}
 
-	public JTextField getTextFieldProveedor() {
+	public JTextField getTextFieldProveedor() {//
 		return textFieldProveedor;
 	}
 
-	public void setTextFieldProveedor(JTextField textFieldProveedor) {
+	public void setTextFieldProveedor(JTextField textFieldProveedor) {//
 		this.textFieldProveedor = textFieldProveedor;
 	}
 
@@ -342,11 +341,11 @@ public class VistaProductos extends JPanel {
 		this.textFieldBuscar = textFieldBuscar;
 	}
 
-	public JButton getBtnBuscarProducto() {
+	public JButton getBtnBuscarProducto() {//
 		return btnBuscarProducto;
 	}
 
-	public void setBtnBuscarProducto(JButton btnBuscarProducto) {
+	public void setBtnBuscarProducto(JButton btnBuscarProducto) {//
 		this.btnBuscarProducto = btnBuscarProducto;
 	}
 }

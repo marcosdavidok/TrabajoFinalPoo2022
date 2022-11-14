@@ -25,10 +25,12 @@ public class VistaBuscarProveedor extends JFrame {
 	protected JPanel contentPane;
 	private JPanel panelTabla;
 	private JTable table;
-	private JButton btnBuscar, btnAgregar;
+	private JButton btnBuscar,btnAgregar;
 	private JTextField textFieldBuscar;
 	private JLabel lblTitulo;
 	private ControladorBuscarProveedor controlador;
+
+
 
 	public VistaBuscarProveedor(ControladorBuscarProveedor controlador) {
 
@@ -37,7 +39,7 @@ public class VistaBuscarProveedor extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1074, 655);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 186, 107));
+		contentPane.setBackground(new Color(145, 139, 173));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -47,23 +49,23 @@ public class VistaBuscarProveedor extends JFrame {
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setBounds(10, 0, 1038, 41);
 		contentPane.add(panelTitulo);
-		panelTitulo.setBackground(new Color(255, 220, 138));
+		panelTitulo.setBackground(new Color(188, 180, 224));
 		contentPane.add(panelTitulo);
-
+		
 		lblTitulo = new JLabel("BUSCAR PROVEEDOR");
-		lblTitulo.setForeground(new Color(255, 186, 107));
+		lblTitulo.setForeground(new Color(47, 45, 56));
 		lblTitulo.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 35));
 		panelTitulo.add(lblTitulo);
 
 		panelTabla = new JPanel();
 		panelTabla.setBounds(10, 171, 1038, 445);
 		contentPane.add(panelTabla);
-
 		JScrollPane scrollPane = new JScrollPane();
-
-		panelTabla.setBackground(new Color(255, 220, 138));
+		panelTabla.setBackground(new Color(188, 180, 224));
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.setForeground(new Color(47, 45, 56));
+		btnBuscar.setBackground(new Color(136, 115, 230));
 		btnBuscar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnBuscar.addActionListener(getControlador());
 		ImageIcon imgBtnBuscar = this.ajustarImagen(
@@ -74,6 +76,8 @@ public class VistaBuscarProveedor extends JFrame {
 		textFieldBuscar.addKeyListener(getControlador());
 
 		btnAgregar = new JButton("AGREGAR");
+		btnAgregar.setForeground(new Color(47, 45, 56));
+		btnAgregar.setBackground(new Color(136, 115, 230));
 		btnAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnAgregar.addActionListener(getControlador());
 		btnAgregar.addKeyListener(getControlador());
@@ -81,7 +85,7 @@ public class VistaBuscarProveedor extends JFrame {
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Nuevo.png")).getImage(), 20, 20);
 		btnAgregar.setIcon(imgBtnAgregar);
 		////////////////////////////////////////////////////////////////////////////////////////
-
+		
 		GroupLayout groupLayout = new GroupLayout(panelTabla);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
