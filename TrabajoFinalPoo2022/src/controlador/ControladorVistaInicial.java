@@ -26,7 +26,6 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 	private UsuarioDAO usuarioDAO;
 	private VistaPrincipal vistaPrincipal;
 	private static Usuario usuarioInicial;
-
 	public ControladorVistaInicial() {
 		this.setMd5(new MD5());
 		this.setUsuarioDAO(new UsuarioDAO());
@@ -40,18 +39,14 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 		usuarios = usuarioDAO.getAll();
 
 		for (Usuario usuario : usuarios) {
-
 			if (getVistaInicial().getTextFieldUsuario().getText().equals(usuario.getUsuario())) {
 				setUsuarioInicial(usuario);
 				esta = true;
 				if ((getMd5().encriptar(String.valueOf((getVistaInicial().getPasswordField().getPassword()))))
 						.equals(usuario.getPassword())) {
-
 					getVistaInicial().setVisible(false);
-
 					ControladorVistaPrincipal controladorPrincipal = new ControladorVistaPrincipal();
 					this.setVistaPrincipal(new VistaPrincipal(controladorPrincipal));
-
 					if (usuario.getTipoUsuario() == 3) {
 						controladorPrincipal.getVistaPrincipal().getBtnNuevoConsumo().setEnabled(false);
 						controladorPrincipal.getVistaPrincipal().getBtnGastos().setEnabled(false);
@@ -102,7 +97,6 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource().equals(getVistaInicial().getLblOjo())) {
 			if (getVistaInicial().getPasswordField().getEchoChar() == '●') {
-
 				getVistaInicial().getPasswordField().setEchoChar((char) 0);
 				ImageIcon imgOjo = getVistaInicial().ajustarImagen(
 						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoAbierto.png")).getImage(), 20, 20);
