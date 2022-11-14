@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>baseDatos</name>
+  <classpath>C:\Users\eze_7\Documents\Workspace\Proyecto-Final-2021\Proyecto Final 21-Borrador\mysql-connector-j-8.0.31\mysql-connector-j-8.0.31.jar</classpath>
+  <driver>com.mysql.jdbc.Driver</driver>
+  <username>root</username>
+  <password>Adminpoo22</password>
+  <url>jdbc:mysql://localhost:3306/drinkcounter?characterEncoding=latin1&amp;useConfigs=maxPerformance</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+</jdbcDataAdapter>
