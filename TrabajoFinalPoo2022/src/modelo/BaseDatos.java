@@ -14,7 +14,6 @@ public class BaseDatos {
 	private String url = "jdbc:mysql://localhost:3306/drinkcounter?characterEncoding=latin1&useConfigs=maxPerformance";
 	private String usuario = "root";
 	private String clave = "admin123"; //Contraseña de cada uno
-
 	private static BaseDatos bd = null;
 
 	private BaseDatos() {
