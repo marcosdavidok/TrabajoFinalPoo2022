@@ -154,7 +154,7 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 					|| (getVistaNuevoConsumo().getTextFieldCantidad().getText().isEmpty())
 					|| ((Double.valueOf(getVistaNuevoConsumo().getTextFieldPrecio().getText())) <= 0.0)
 					|| ((Integer.valueOf(getVistaNuevoConsumo().getTextFieldCantidad().getText())) < 1)) {
-				JOptionPane.showMessageDialog(vistaNuevoConsumo, "Ingrese todos los datos del producto.");
+				JOptionPane.showMessageDialog(vistaNuevoConsumo, "Ingrese todos los datos.");
 				getVistaNuevoConsumo().getTextFieldCantidad().requestFocus();
 				return false;
 
@@ -186,7 +186,7 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 		}
 	}
 
-	protected void desactivarBotones(VistaNuevoConsumo vistaNC) {
+	private void desactivarBotones(VistaNuevoConsumo vistaNC) {
 		vistaNC.getBtnBorrar().setEnabled(false);
 		vistaNC.getBtnAgregar().setEnabled(false);
 	}

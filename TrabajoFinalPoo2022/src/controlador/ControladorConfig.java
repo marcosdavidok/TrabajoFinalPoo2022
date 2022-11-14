@@ -24,17 +24,14 @@ public class ControladorConfig implements ActionListener {
 	}
 
 	private void abrirGson() {
-
 		try (FileReader reader = new FileReader(System.getProperty("user.dir") + "/src/Json/empresa.json")) {
 			Gson gson = new Gson();
 			Empresa empresa = gson.fromJson(reader, Empresa.class);
-
 			getVistaConfig().getTextFieldCodigoPostal().setText(empresa.getCodigoPostal());
 			getVistaConfig().getTextFieldDireccion().setText(empresa.getDireccion());
 			getVistaConfig().getTextFieldLocalidad().setText(empresa.getLocalidad());
 			getVistaConfig().getTextFieldRazonSocial().setText(empresa.getRazonSocial());
 			getVistaConfig().getTextFieldTelefono().setText(empresa.getTelefono());
-
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -44,9 +41,9 @@ public class ControladorConfig implements ActionListener {
 
 	private void guardarGson() {
 		Empresa empresa = new Empresa(getVistaConfig().getTextFieldRazonSocial().getText(),
-				getVistaConfig().getTextFieldLocalidad().getText(), getVistaConfig().getTextFieldDireccion().getText(),
+				getVistaConfig().getTextFieldLocalidad().getText(),
 				getVistaConfig().getTextFieldCodigoPostal().getText(),
-				getVistaConfig().getTextFieldTelefono().getText());
+				getVistaConfig().getTextFieldDireccion().getText(), getVistaConfig().getTextFieldTelefono().getText());
 
 		setGson(new Gson());
 		String json = gson.toJson(empresa);

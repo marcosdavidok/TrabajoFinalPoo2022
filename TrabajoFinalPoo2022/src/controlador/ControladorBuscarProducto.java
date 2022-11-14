@@ -10,7 +10,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
 import javax.swing.JOptionPane;
+
 import modelo.Producto;
 import modelo.ProductoDAO;
 import vista.VistaBuscarProducto;
@@ -52,7 +54,6 @@ public class ControladorBuscarProducto implements ActionListener, WindowListener
 
 			if (Pattern.compile(Pattern.quote(vistaBuscarProducto.getTextFieldBuscar().getText()),
 					Pattern.CASE_INSENSITIVE).matcher(producto.getNombreProducto()).find()) {
-
 				getVistaBuscarProducto().getModeloTabla().addRow(fila);
 			}
 		}

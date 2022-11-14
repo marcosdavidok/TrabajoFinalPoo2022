@@ -137,4 +137,4 @@ INSERT INTO `consumos` (`id_consumo`, `fecha_consumo`, `id_usuario`, `total`) VA
 
 
 -- use drinkcounter;
--- INSERT INTO usuarios VALUES (3, 'prueba', 3, md5("prueba")); MANERA DE INGRESAR NUEVO USUARIO
+-- INSERT INTO usuarios VALUES (4, 'usuario', 3, md5("contraseña")); MANERA DE INGRESAR NUEVO USUARIO

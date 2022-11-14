@@ -5,10 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import vista.VistaPrincipal;
 
 public class ControladorVistaPrincipal implements ActionListener, WindowStateListener {
@@ -17,13 +15,11 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 	private VistaPrincipal vistaPrincipal;
 	private ControladorConfig controladorConfig;
 	private ControladorNuevoConsumo controladorNuevoConsumo;
-
 	private ControladorProveedores controladorProveedores;
 	private ControladorProductos controladorProductos;
 	private ControladorGastos controladorGastos;
 
 	public ControladorVistaPrincipal() {
-		// this.ControladorVistaGeneral = this;
 		this.setVistaPrincipal(new VistaPrincipal(this));
 		this.getVistaPrincipal().setVisible(true);
 
@@ -64,6 +60,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		if (e.getSource().equals(getVistaPrincipal().getBtnProductos())) {
 			getVistaPrincipal().getLblTitulo().setText("BEBIDAS");
 			getControladorProductos().getVistaProductos().setVisible(true);
+			getControladorProductos().pasarATablas(null);
 			getControladorProveedores().getVistaProveedores().setVisible(false);
 			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
 			getControladorConfig().getVistaConfig().setVisible(false);
@@ -85,6 +82,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 			getControladorProveedores().getVistaProveedores().setVisible(false);
 			getControladorNuevoConsumo().getVistaNuevoConsumo().setVisible(false);
 			getControladorConfig().getVistaConfig().setVisible(false);
+			getControladorGastos().pasarATabla();
 
 		}
 		if (e.getSource().equals(getVistaPrincipal().getBtnConfiguracion())) {
@@ -118,7 +116,6 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 				new ControladorVistaInicial();
 			}
 		}
-
 	}
 
 	@Override
@@ -144,7 +141,7 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 
 	}
 
-	protected ImageIcon ajustarImagen(Image img, int ancho, int alto) {
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
 		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
 		return imagen;
 	}

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import modelo.Proveedor;
 import modelo.ProveedorDAO;
+import modelo.Reportes;
 import vista.VistaPrincipal;
 import vista.VistaProveedores;
 
@@ -43,22 +45,21 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		return fila;
 	}
 
-	public void pasarATabla(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
-		vaciarTabla(vistaPV); // O sino se muestra duplicado
+	private void pasarATabla(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
+		vaciarTabla(vistaPV);
 		proveedores = proveedorDao.getAll();
 		for (Proveedor proveedor : proveedores) {
 			vistaPV.getModeloTabla().addRow(this.obtenerProveedor(proveedor));
 		}
-
 	}
 
-	public void vaciarTabla(VistaProveedores vistaPV) {
+	private void vaciarTabla(VistaProveedores vistaPV) {
 		while (vistaPV.getModeloTabla().getRowCount() > 0) {
 			vistaPV.getModeloTabla().removeRow(0);
 		}
 	}
 
-	public void limpiar(VistaProveedores vistaPV) {
+	private void limpiar(VistaProveedores vistaPV) {
 		vistaPV.getTextFieldDireccion().setText(null);
 		vistaPV.getTextFieldNombre().setText(null);
 		vistaPV.getTextFieldCuit().setText(null);
@@ -66,11 +67,10 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		vistaPV.getTextFieldTelefono().setText(null);
 	}
 
-	public void guardar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
+	private void guardar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
 		Proveedor proveedor = new Proveedor(Integer.valueOf(vistaPV.getTextFieldCuit().getText()),
 				vistaPV.getTextFieldNombre().getText(), Integer.valueOf(vistaPV.getTextFieldTelefono().getText()),
 				vistaPV.getTextFieldDireccion().getText(), vistaPV.getTextFieldRazonSocial().getText());
-
 		if ((proveedorDao.get(vistaPV.getTextFieldCuit().getText())) != null) {
 			JOptionPane.showMessageDialog(vistaPV, "Ya existe este proveedor. Ingrese un CUIT diferente.");
 		} else {
@@ -82,7 +82,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 
 	}
 
-	public void modificar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
+	private void modificar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
 		Proveedor proveedor = new Proveedor(
 				Integer.valueOf(vistaPV.getModeloTabla().getValueAt(vistaPV.getTable().getSelectedRow(), 0).toString()),
 				vistaPV.getTextFieldNombre().getText(), Integer.valueOf(vistaPV.getTextFieldTelefono().getText()),
@@ -94,7 +94,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		pasarATabla(proveedores, proveedorDao, vistaPV);
 	}
 
-	public void eliminar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
+	private void eliminar(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao, VistaProveedores vistaPV) {
 		Proveedor proveedor = new Proveedor(
 				Integer.valueOf(vistaPV.getModeloTabla().getValueAt(vistaPV.getTable().getSelectedRow(), 0).toString()),
 				null, null, null, null);
@@ -104,12 +104,12 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		pasarATabla(proveedores, proveedorDao, vistaPV);
 	}
 
-	protected void desactivarBotones(VistaProveedores vistaPV) {
+	private void desactivarBotones(VistaProveedores vistaPV) {
 		vistaPV.getBtnModificar().setEnabled(false);
 		vistaPV.getBtnEliminar().setEnabled(false);
 	}
 
-	protected void deTablaACampos(VistaProveedores VistaPV) {
+	private void deTablaACampos(VistaProveedores VistaPV) {
 		VistaPV.getTextFieldCuit()
 				.setText(VistaPV.getTable().getValueAt(VistaPV.getTable().getSelectedRow(), 0).toString());
 		VistaPV.getTextFieldNombre()
@@ -122,7 +122,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				.setText(VistaPV.getTable().getValueAt(VistaPV.getTable().getSelectedRow(), 4).toString());
 	}
 
-	protected void buscarProveedor(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao,
+	private void buscarProveedor(ArrayList<Proveedor> proveedores, ProveedorDAO proveedorDao,
 			VistaProveedores vistaPV) {
 		proveedores = proveedorDao.getAll();
 		for (Proveedor proveedor : proveedores) {
@@ -133,7 +133,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		}
 	}
 
-	public boolean consistenciaDatosCompletos() {
+	private boolean consistenciaDatosCompletos() {
 		if (getVistaProveedores().getTextFieldCuit().getText().isEmpty()
 				|| getVistaProveedores().getTextFieldNombre().getText().isEmpty()
 				|| getVistaProveedores().getTextFieldDireccion().getText().isEmpty()
@@ -198,7 +198,19 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 			if (res == 0) {
 				this.eliminar(getProveedores(), getProveedorDao(), getVistaProveedores());
 				this.desactivarBotones(getVistaProveedores());
+
 			}
+		}
+
+		if (e.getSource().equals(getVistaProveedores().getBtnImprimir())) {
+			try {
+				Reportes.reportesProveedores();
+			} catch (SQLException e1) {
+				JOptionPane.showMessageDialog(vistaProveedores,
+						"Hubo un problema con la base de datos y no se pudo generar el reporte.");
+				e1.printStackTrace();
+			}
+			this.desactivarBotones(getVistaProveedores());
 		}
 
 		if (e.getSource().equals(getVistaProveedores().getBtnBuscar())) {
@@ -242,6 +254,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				getVistaProveedores().getBtnBuscar().doClick();
 			}
 		}
+
 	}
 
 	@Override
@@ -257,7 +270,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 		}
 	}
 
-	protected ImageIcon ajustarImagen(Image img, int ancho, int alto) {
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
 		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
 		return imagen;
 	}

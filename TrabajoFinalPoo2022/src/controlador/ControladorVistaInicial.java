@@ -10,9 +10,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+
 import modelo.MD5;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
@@ -26,6 +28,7 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 	private UsuarioDAO usuarioDAO;
 	private VistaPrincipal vistaPrincipal;
 	private static Usuario usuarioInicial;
+
 	public ControladorVistaInicial() {
 		this.setMd5(new MD5());
 		this.setUsuarioDAO(new UsuarioDAO());
@@ -47,6 +50,7 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 					getVistaInicial().setVisible(false);
 					ControladorVistaPrincipal controladorPrincipal = new ControladorVistaPrincipal();
 					this.setVistaPrincipal(new VistaPrincipal(controladorPrincipal));
+
 					if (usuario.getTipoUsuario() == 3) {
 						controladorPrincipal.getVistaPrincipal().getBtnNuevoConsumo().setEnabled(false);
 						controladorPrincipal.getVistaPrincipal().getBtnGastos().setEnabled(false);
@@ -55,8 +59,8 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 						controladorPrincipal.getVistaPrincipal().getBtnProductos().setEnabled(false);
 						controladorPrincipal.getVistaPrincipal().getBtnProveedores().setEnabled(false);
 						controladorPrincipal.getVistaPrincipal().getBtnRegistrarUsuario().setVisible(false);
+						controladorPrincipal.getVistaPrincipal().getBtnConfiguracion().setEnabled(false);
 					}
-
 				} else {
 					JOptionPane.showMessageDialog(vistaInicial, "CONTRASEÑA INCORRECTA");
 					getVistaInicial().getPasswordField().setBorder(new LineBorder(Color.RED));
@@ -97,6 +101,7 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource().equals(getVistaInicial().getLblOjo())) {
 			if (getVistaInicial().getPasswordField().getEchoChar() == '●') {
+
 				getVistaInicial().getPasswordField().setEchoChar((char) 0);
 				ImageIcon imgOjo = getVistaInicial().ajustarImagen(
 						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoAbierto.png")).getImage(), 20, 20);

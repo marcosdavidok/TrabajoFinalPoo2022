@@ -35,7 +35,6 @@ public class ControladorVistaNuevoUsuario
 	public ControladorVistaNuevoUsuario() {
 		setVistaNuevoUsuario(new VistaNuevoUsuario(this));
 		this.getVistaNuevoUsuario().setVisible(true);
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -75,49 +74,23 @@ public class ControladorVistaNuevoUsuario
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-
 		if (e.getSource().equals(getVistaNuevoUsuario().getBtnRegistrar())) {
 			if (getVistaNuevoUsuario().getPasswordFieldContraseña().getPassword().length < 6) {
 				JOptionPane.showMessageDialog(vistaNuevoUsuario, "La contraseña debe tener por lo menos 6 carateres");
 				getVistaNuevoUsuario().getPasswordFieldContraseña().requestFocus();
 				getVistaNuevoUsuario().getPasswordFieldConfirmar().setText(null);
-
 			} else if (!getVistaNuevoUsuario().getPasswordFieldConfirmar().getText()
 					.equals(getVistaNuevoUsuario().getPasswordFieldContraseña().getText())) {
 				JOptionPane.showMessageDialog(vistaNuevoUsuario, "Las contraseñas no coinciden");
 				getVistaNuevoUsuario().getPasswordFieldContraseña().requestFocus();
 				getVistaNuevoUsuario().getPasswordFieldConfirmar().setText(null);
-
 			} else {
 				this.registrar();
 				getVistaNuevoUsuario().getTextFieldUsuario().setText(null);
 				getVistaNuevoUsuario().getPasswordFieldContraseña().setText(null);
 				getVistaNuevoUsuario().getPasswordFieldConfirmar().setText(null);
-
-			}
-
-		}
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-
-		if (e.getSource().equals(getVistaNuevoUsuario().getLblOjo())) {
-			if (getVistaNuevoUsuario().getPasswordFieldContraseña().getEchoChar() == '●') {
-
-				getVistaNuevoUsuario().getPasswordFieldContraseña().setEchoChar((char) 0);
-				ImageIcon imgOjo = getVistaNuevoUsuario().ajustarImagen(
-						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoAbierto.png")).getImage(), 20, 20);
-				getVistaNuevoUsuario().getLblOjo().setIcon(imgOjo);
-			} else {
-				getVistaNuevoUsuario().getPasswordFieldContraseña().setEchoChar('●');
-				ImageIcon imgOjo = getVistaNuevoUsuario().ajustarImagen(
-						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoCerrado.png")).getImage(), 20, 20);
-				getVistaNuevoUsuario().getLblOjo().setIcon(imgOjo);
 			}
 		}
-
 	}
 
 	@Override
@@ -129,43 +102,62 @@ public class ControladorVistaNuevoUsuario
 					JOptionPane.showMessageDialog(vistaNuevoUsuario,
 							"Ya existe ese usuario, por favor elija otro nombre");
 					getVistaNuevoUsuario().getTextFieldUsuario().requestFocus();
-
 				}
-
 			}
-
 		}
-
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		if (e.getSource().equals(getVistaNuevoUsuario())) {
 			Vector<String> nombres = new Vector<String>();
-
 			nombres.add("Jefe de barra");
 			nombres.add("Abastecimiento");
-
 			getVistaNuevoUsuario().getComboBox().setModel(new DefaultComboBoxModel<>(nombres));
 			Collections.sort(nombres);
 			this.getVistaNuevoUsuario().getComboBox().setModel(new DefaultComboBoxModel<>(nombres));
 		}
+	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource().equals(getVistaNuevoUsuario().getLblOjo())) {
+			if (getVistaNuevoUsuario().getPasswordFieldContraseña().getEchoChar() == '●') {
+				getVistaNuevoUsuario().getPasswordFieldContraseña().setEchoChar((char) 0);
+				ImageIcon imgOjo = getVistaNuevoUsuario().ajustarImagen(
+						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoAbierto.png")).getImage(), 20, 20);
+				getVistaNuevoUsuario().getLblOjo().setIcon(imgOjo);
+			} else {
+				getVistaNuevoUsuario().getPasswordFieldContraseña().setEchoChar('●');
+				ImageIcon imgOjo = getVistaNuevoUsuario().ajustarImagen(
+						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoCerrado.png")).getImage(), 20, 20);
+				getVistaNuevoUsuario().getLblOjo().setIcon(imgOjo);
+			}
+		}
 	}
 
 	@Override
 	public void focusGained(FocusEvent e) {
+	}
 
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-
 	}
 
 	@Override
@@ -174,52 +166,38 @@ public class ControladorVistaNuevoUsuario
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-
+	public MD5 getMd5() {
+		return md5;
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-
+	public void setMd5(MD5 md5) {
+		this.md5 = md5;
 	}
 
 	public VistaNuevoUsuario getVistaNuevoUsuario() {
@@ -245,13 +223,4 @@ public class ControladorVistaNuevoUsuario
 	public void setUsuarios(ArrayList<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
-	public MD5 getMd5() {
-		return md5;
-	}
-
-	public void setMd5(MD5 md5) {
-		this.md5 = md5;
-	}
-
 }

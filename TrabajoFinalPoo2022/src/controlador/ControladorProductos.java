@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -19,6 +20,7 @@ import modelo.Proveedor;
 import modelo.ProveedorDAO;
 import modelo.Producto;
 import modelo.ProductoDAO;
+import modelo.Reportes;
 import vista.VistaPrincipal;
 import vista.VistaProductos;
 
@@ -48,19 +50,21 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 	}
 
 	private Object[] obtenerProducto(Producto producto) {
+
 		Object[] fila = { Integer.valueOf(producto.getCodigoProducto()), producto.getNombreProducto(),
 				Integer.valueOf(producto.getCantidad()), Double.valueOf(producto.getPrecioProducto()),
 				Integer.valueOf(producto.getCuitProveedor()) };
 		return fila;
 	}
 
-	public void pasarATablas(ArrayList<Producto> productos) {
+	protected void pasarATablas(ArrayList<Producto> productos) {
 		this.vaciarTabla();
 		this.setProductos(getProductoDao().getAll());
 		for (Producto producto : getProductos()) {
-
 			this.getVistaProductos().getModeloTabla().addRow(this.obtenerProducto(producto));
+
 		}
+
 	}
 
 	public void vaciarTabla() {
@@ -69,7 +73,7 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 		}
 	}
 
-	protected void deTablaACampos(VistaProductos VistaP) {
+	private void deTablaACampos(VistaProductos VistaP) {
 		VistaP.getTextFieldNombre()
 				.setText(VistaP.getTable().getValueAt(VistaP.getTable().getSelectedRow(), 1).toString());
 		VistaP.getTextFieldCantidad()
@@ -83,6 +87,7 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 		for (Producto producto : getProductos()) {
 			if (Pattern.compile(Pattern.quote(vistaProductos.getTextFieldBuscar().getText()), Pattern.CASE_INSENSITIVE)
 					.matcher(producto.getNombreProducto()).find()) {
+
 				getVistaProductos().getModeloTabla().addRow(this.obtenerProducto(producto));
 			}
 		}
@@ -112,7 +117,6 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		if (e.getSource().equals(getVistaProductos().getBtnGuardar())) {
 			if (this.consistenciaDatosCompletos() == true) {
 				Object[] opciones = { "Si", "No" };
@@ -197,6 +201,16 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 
 		}
 
+		if (e.getSource().equals(getVistaProductos().getBtnImprimir())) {
+			try {
+				Reportes.reportesProductos();
+			} catch (SQLException e1) {
+				JOptionPane.showMessageDialog(vistaProductos,
+						"Hubo un problema con la base de datos y no se pudo generar el reporte.");
+				e1.printStackTrace();
+			}
+
+		}
 		if (e.getSource().equals(getVistaProductos().getBtnBuscarProducto())) {
 			if (getVistaProductos().getTextFieldBuscar().getText().isEmpty()) {
 				this.pasarATablas(getProductos());
@@ -266,7 +280,7 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 
 	}
 
-	protected ImageIcon ajustarImagen(Image img, int ancho, int alto) {
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
 		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
 		return imagen;
 	}
