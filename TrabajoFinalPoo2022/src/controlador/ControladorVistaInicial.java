@@ -65,8 +65,14 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 					JOptionPane.showMessageDialog(vistaInicial, "CONTRASEÑA INCORRECTA");
 					getVistaInicial().getPasswordField().setBorder(new LineBorder(Color.RED));
 				}
+			} else if (esta == false) {
+				JOptionPane.showMessageDialog(null, "Este usuario no existe.");
+				break;
 			}
-
+			/*
+			 * else { JOptionPane.showMessageDialog(vistaInicial,
+			 * "Este usuario no existe."); }
+			 */
 		}
 	}
 
