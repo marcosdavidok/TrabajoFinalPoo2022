@@ -13,7 +13,7 @@ public class BaseDatos {
 	private Connection conexion;
 	private String url = "jdbc:mysql://localhost:3306/drinkcounter?characterEncoding=latin1&useConfigs=maxPerformance";
 	private String usuario = "root";
-	private String clave = "admin123"; //Contraseña de cada uno
+	private String clave = "Adminpoo22";
 	private static BaseDatos bd = null;
 
 	private BaseDatos() {
@@ -25,15 +25,6 @@ public class BaseDatos {
 			JOptionPane.showMessageDialog(null, "Error al intentar conectarse con la base de datos.",
 					"Algo ha ocurrido.", JOptionPane.ERROR_MESSAGE);
 		}
-
-	}
-
-	public Connection getConexion() {
-		return conexion;
-	}
-
-	private void setConexion(Connection conexion) {
-		this.conexion = conexion;
 	}
 
 	public static BaseDatos getInstance() {
@@ -42,7 +33,6 @@ public class BaseDatos {
 
 	public ResultSet getAll(String consulta) {
 		ResultSet rs = null;
-
 		try {
 			Statement s = conexion.createStatement();
 			rs = s.executeQuery(consulta);
@@ -53,7 +43,6 @@ public class BaseDatos {
 	}
 
 	public Integer alta(String tabla, String columnas, String valores) {
-
 		try {
 			PreparedStatement ps = conexion.prepareStatement(
 					"INSERT INTO " + tabla + " (" + columnas + " ) VALUES (" + valores + ");",
@@ -102,9 +91,19 @@ public class BaseDatos {
 			Integer entero = st.executeUpdate("DELETE FROM " + tabla + " WHERE " + primaryKey + " IN (" + id + ");");
 			return entero > 0;
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null,
+					"El proveedor está asociado a ciertas bebidas.\nPrimero elimine las bebidas asociadas al proveedor.");
 			e.printStackTrace();
 		}
 		return false;
 
+	}
+
+	public Connection getConexion() {
+		return conexion;
+	}
+
+	private void setConexion(Connection conexion) {
+		this.conexion = conexion;
 	}
 }
