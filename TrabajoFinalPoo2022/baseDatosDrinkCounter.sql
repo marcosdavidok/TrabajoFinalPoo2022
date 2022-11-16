@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `productos` (
 
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT INTO `productos` (`codigo`, `nombre`, `cuit_proveedor`, `cantidad`, `precio`) VALUES
-	(0, 'Fernet', 021001, 8, 750.00),
-	(1, 'Corona', 021001, 8, 450.00),
+	(0, 'Fernet', 021001, 18, 750.00),
+	(1, 'Corona', 021001, 23, 450.00),
 	(2, 'Gancia', 11111, 30, 350.00),
-    (3, 'Smirnoff', 11111, 8, 650.00);
+    (3, 'Smirnoff', 11111, 22, 650.00);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `proveedores`;
@@ -70,7 +70,8 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
 INSERT INTO `proveedores` (`cuit`, `razon_social`, `nombre`, `direccion`, `telefono`) VALUES
 	(021001, 'Bebidas SA', 'Juan', 'Dorrego 123', 65432),
-    (11111, 'Vodka SA', 'Cristian', 'Rivadavia 777', 12345);
+    (11111, 'Vodka SA', 'Cristian', 'Rivadavia 777', 12345),
+    (443212, 'Cervezas SA', 'Daniel', 'Corrientes 621', 2975943);
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `tipo_usuario`;
@@ -135,6 +136,5 @@ INSERT INTO `consumos` (`id_consumo`, `fecha_consumo`, `id_usuario`, `total`) VA
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
 
-
--- use drinkcounter;
--- INSERT INTO usuarios VALUES (4, 'usuario', 3, md5("contraseña")); MANERA DE INGRESAR NUEVO USUARIO
+ -- use drinkcounter;
+ -- INSERT INTO usuarios VALUES (4, 'usuario', 3, md5("contraseña")); MANERA DE INGRESAR NUEVO USUARIO
