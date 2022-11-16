@@ -1,16 +1,20 @@
 package controlador;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import com.google.gson.Gson;
 
 import modelo.Empresa;
 import vista.VistaConfig;
+import vista.VistaPrincipal;
 
 public class ControladorConfig implements ActionListener {
 
@@ -51,8 +55,10 @@ public class ControladorConfig implements ActionListener {
 		try (FileWriter file = new FileWriter(System.getProperty("user.dir") + "/src/Json/empresa.json")) {
 
 			file.write(json);
-
-			JOptionPane.showMessageDialog(vistaConfig, "DATOS GUARDADOS CORRECTAMENTE");
+			JOptionPane.showMessageDialog(vistaConfig, "Datos guardados correctamente", "Aceptado", 0,
+					this.ajustarImagen(
+							new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Correcto.png")).getImage(), 44,
+							44));
 
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -72,6 +78,11 @@ public class ControladorConfig implements ActionListener {
 			vistaConfig.getTextFieldTelefono().setText(null);
 			vistaConfig.getTextFieldDireccion().setText(null);
 		}
+	}
+
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
+		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
+		return imagen;
 	}
 
 	public VistaConfig getVistaConfig() {

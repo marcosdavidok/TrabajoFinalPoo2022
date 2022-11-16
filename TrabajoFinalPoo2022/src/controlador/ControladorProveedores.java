@@ -72,7 +72,8 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				vistaPV.getTextFieldNombre().getText(), Integer.valueOf(vistaPV.getTextFieldTelefono().getText()),
 				vistaPV.getTextFieldDireccion().getText(), vistaPV.getTextFieldRazonSocial().getText());
 		if ((proveedorDao.get(vistaPV.getTextFieldCuit().getText())) != null) {
-			JOptionPane.showMessageDialog(vistaPV, "Ya existe este proveedor. Ingrese un CUIT diferente.");
+			JOptionPane.showMessageDialog(vistaPV, "Ya existe este proveedor. Ingrese un CUIT diferente.", "Atención",
+					2);
 		} else {
 			this.vaciarTabla(vistaPV);
 			proveedorDao.insert(proveedor);
@@ -139,7 +140,7 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				|| getVistaProveedores().getTextFieldDireccion().getText().isEmpty()
 				|| getVistaProveedores().getTextFieldTelefono().getText().isEmpty()
 				|| getVistaProveedores().getTextFieldRazonSocial().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(vistaProveedores, "Ingrese todos los datos del proveedor.");
+			JOptionPane.showMessageDialog(vistaProveedores, "Ingrese todos los datos del proveedor.", "Atención", 2);
 			return false;
 		}
 		return true;
@@ -207,7 +208,10 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				Reportes.reportesProveedores();
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vistaProveedores,
-						"Hubo un problema con la base de datos y no se pudo generar el reporte.");
+						"Hubo un problema con la base de datos y no se pudo generar el reporte.", "Error", -1,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/ErrorBd.png")).getImage(), 44,
+								44));
 				e1.printStackTrace();
 			}
 			this.desactivarBotones(getVistaProveedores());
@@ -235,13 +239,13 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 
 		if (getVistaProveedores().getTextFieldCuit().isFocusOwner()) {
 			if (getVistaProveedores().getTextFieldCuit().getText().length() > 8) {
-				JOptionPane.showMessageDialog(vistaProveedores, "No es posible ingresar mas digitos.");
+				JOptionPane.showMessageDialog(vistaProveedores, "No es posible ingresar mas digitos.", "Atención", 2);
 				e.consume();
 			}
 		}
 		if (getVistaProveedores().getTextFieldTelefono().isFocusOwner()) {
 			if (getVistaProveedores().getTextFieldTelefono().getText().length() > 8) {
-				JOptionPane.showMessageDialog(vistaProveedores, "No es posible ingresar mas digitos.");
+				JOptionPane.showMessageDialog(vistaProveedores, "No es posible ingresar mas digitos.", "Atención", 2);
 				e.consume();
 			}
 		}
@@ -254,7 +258,6 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 				getVistaProveedores().getBtnBuscar().doClick();
 			}
 		}
-
 	}
 
 	@Override
@@ -277,12 +280,10 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 
 	@Override
 	public void focusLost(FocusEvent e) {
-
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
 	}
 
 	@Override
@@ -291,17 +292,14 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 	}
 
 	public VistaProveedores getVistaProveedores() {
@@ -331,5 +329,4 @@ public class ControladorProveedores implements ActionListener, FocusListener, Ke
 	public static void setControladorProveedores(ControladorProveedores controladorProveedores) {
 		ControladorProveedores.controladorProveedores = controladorProveedores;
 	}
-
 }

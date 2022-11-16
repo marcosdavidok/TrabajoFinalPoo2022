@@ -25,7 +25,7 @@ public class VistaConfig extends JPanel {
 		this.setControlador(controlador);
 
 		setBackground(new Color(145, 139, 173));
-		setBounds(0, 0, 858, 444);
+		setBounds(0, 0, 880, 444);
 
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnLimpiar = new JButton("LIMPIAR");

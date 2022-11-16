@@ -32,7 +32,7 @@ public class VistaProveedores extends JPanel {
 	public VistaProveedores(ControladorProveedores controladorProveedor) {
 		this.setControladorProveedor(controladorProveedor);
 		setBackground(new Color(145, 139, 173));
-		setBounds(0, 0, 858, 444);
+		setBounds(0, 0, 880, 444);
 		JScrollPane scrollPane = new JScrollPane();
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnGuardar = new JButton("GUARDAR");

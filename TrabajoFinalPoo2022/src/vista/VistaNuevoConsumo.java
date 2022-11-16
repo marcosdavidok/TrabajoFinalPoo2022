@@ -42,7 +42,7 @@ public class VistaNuevoConsumo extends JPanel {
 		this.setControlador(controlador);
 
 		setBackground(new Color(145, 139, 173));
-		setBounds(0, 0, 860, 444);
+		setBounds(0, 0, 880, 444);
 ///////////////////////////////////////// BOTONES/////////////////////////////////////////
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(this.getControlador());
@@ -67,8 +67,6 @@ public class VistaNuevoConsumo extends JPanel {
 		btnRegistrar.setIcon(imgBtnImprimir);
 
 		btnBorrar = new JButton("Borrar");
-		//btnBorrar.setBackground(new Color(204, 0, 51));
-		//btnBorrar.setForeground(new Color(255, 255, 255));
 		btnBorrar.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		ImageIcon imgBtnBorrar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Eliminar.png")).getImage(), 20, 20);
@@ -107,7 +105,7 @@ public class VistaNuevoConsumo extends JPanel {
 		JLabel lblPrecio = new JLabel("Precio");
 		lblPrecio.setFont(new Font("Dialog", Font.BOLD, 14));
 		textFieldPrecio = new JTextField();
-		textFieldPrecio.setEditable(false); // para que no se pueda editar ya que es lo asignado por el proveedor
+		//textFieldPrecio.setEditable(false); // para que no se pueda editar ya que es lo asignado por el proveedor
 		textFieldPrecio.setColumns(10);
 		textFieldPrecio.addKeyListener(getControlador());
 

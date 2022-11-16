@@ -105,7 +105,7 @@ public class VistaBuscarProveedor extends JFrame {
 
 		);
 
-		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
+		String encabezado[] = { "CUIT Proveedor", "Nombre", "Cantidad", "Precio", "Razon Social" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
 		table = new JTable(this.getModeloTabla()) {
 

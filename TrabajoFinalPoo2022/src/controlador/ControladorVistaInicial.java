@@ -27,6 +27,8 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 	private MD5 md5;
 	private UsuarioDAO usuarioDAO;
 	private VistaPrincipal vistaPrincipal;
+	private final Integer Abastecimiento = 3;
+	private final Integer JefeDeBarra = 2;
 	private static Usuario usuarioInicial;
 
 	public ControladorVistaInicial() {
@@ -51,29 +53,42 @@ public class ControladorVistaInicial implements ActionListener, KeyListener, Foc
 					ControladorVistaPrincipal controladorPrincipal = new ControladorVistaPrincipal();
 					this.setVistaPrincipal(new VistaPrincipal(controladorPrincipal));
 
-					if (usuario.getTipoUsuario() == 3) {
-						controladorPrincipal.getVistaPrincipal().getBtnNuevoConsumo().setEnabled(false);
-						controladorPrincipal.getVistaPrincipal().getBtnGastos().setEnabled(false);
+					if (usuario.getTipoUsuario() == Abastecimiento) {
+						controladorPrincipal.getVistaPrincipal().getBtnNuevoConsumo().setVisible(false);
+						controladorPrincipal.getVistaPrincipal().getBtnGastos().setVisible(false);
 						controladorPrincipal.getVistaPrincipal().getBtnRegistrarUsuario().setVisible(false);
-					} else if (usuario.getTipoUsuario() == 2) {
-						controladorPrincipal.getVistaPrincipal().getBtnProductos().setEnabled(false);
-						controladorPrincipal.getVistaPrincipal().getBtnProveedores().setEnabled(false);
+					} else if (usuario.getTipoUsuario() == JefeDeBarra) {
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnEliminarSinStock()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnGuardar()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnLimpiar()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnModificar()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnEliminar()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnImprimir()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getTextFieldNombre()
+								.setEditable(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getTextFieldCantidad()
+								.setEditable(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getBtnBuscarProveedor()
+								.setVisible(false);
+						controladorPrincipal.getControladorProductos().getVistaProductos().getTextFieldPrecio()
+								.setEditable(false);
+						controladorPrincipal.getVistaPrincipal().getBtnProveedores().setVisible(false);
 						controladorPrincipal.getVistaPrincipal().getBtnRegistrarUsuario().setVisible(false);
-						controladorPrincipal.getVistaPrincipal().getBtnConfiguracion().setEnabled(false);
+						controladorPrincipal.getVistaPrincipal().getBtnConfiguracion().setVisible(false);
 					}
 				} else {
-					JOptionPane.showMessageDialog(vistaInicial, "CONTRASEÑA INCORRECTA");
+					JOptionPane.showMessageDialog(vistaInicial, "CONTRASEÑA INCORRECTA", "Atención", 0);
 					getVistaInicial().getPasswordField().setBorder(new LineBorder(Color.RED));
 				}
-			} else if (esta == false) {
-				JOptionPane.showMessageDialog(null, "Este usuario no existe.");
-				break;
 			}
-			/*
-			 * else { JOptionPane.showMessageDialog(vistaInicial,
-			 * "Este usuario no existe."); }
-			 */
 		}
+
 	}
 
 	@Override

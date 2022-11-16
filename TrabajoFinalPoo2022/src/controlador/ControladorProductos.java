@@ -80,6 +80,8 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 				.setText(VistaP.getTable().getValueAt(VistaP.getTable().getSelectedRow(), 2).toString());
 		VistaP.getTextFieldPrecio()
 				.setText(VistaP.getTable().getValueAt(VistaP.getTable().getSelectedRow(), 3).toString());
+		VistaP.getTextFieldProveedor()
+				.setText(VistaP.getTable().getValueAt(VistaP.getTable().getSelectedRow(), 4).toString());
 	}
 
 	private void buscarProducto() {
@@ -109,7 +111,7 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 				|| getVistaProductos().getTextFieldCantidad().getText().isEmpty()
 				|| getVistaProductos().getTextFieldPrecio().getText().isEmpty()
 				|| getVistaProductos().getTextFieldProveedor().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(vistaProductos, "Ingrese todos los datos del producto.");
+			JOptionPane.showMessageDialog(vistaProductos, "Ingrese todos los datos del producto.", "Atención", 0);
 			return false;
 		}
 		return true;
@@ -128,9 +130,19 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 								44),
 						opciones, opciones[0]);
 				if (res == 0) {
-					this.guardarProducto();
-					getVistaProductos().getBtnModificar().setEnabled(false);
-					getVistaProductos().getBtnEliminar().setEnabled(false);
+					Boolean flag = false;
+					for (Producto producto : productos) {
+						if (producto.getNombreProducto()
+								.equalsIgnoreCase(vistaProductos.getTextFieldNombre().getText())) {
+							JOptionPane.showMessageDialog(vistaProductos, "Este producto ya existe.", "Atención", 2);
+							flag = true;
+						}
+					}
+					if (flag == false) {
+						this.guardarProducto();
+						getVistaProductos().getBtnModificar().setEnabled(false);
+						getVistaProductos().getBtnEliminar().setEnabled(false);
+					}
 				}
 			}
 		}
@@ -139,6 +151,30 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 			getVistaProductos().getTextFieldNombre().setText(null);
 			getVistaProductos().getTextFieldPrecio().setText(null);
 			getVistaProductos().getTextFieldProveedor().setText(null);
+
+		}
+
+		if (e.getSource().equals(getVistaProductos().getBtnEliminarSinStock())) {
+			Object[] opciones = { "Si", "No" };
+			Integer res = JOptionPane.showOptionDialog(getVistaProductos(),
+					"¿Está seguro que desea eliminar los productos sin stock?", "Atención", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.PLAIN_MESSAGE,
+					this.ajustarImagen(
+							new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Eliminar.png")).getImage(), 44,
+							44),
+					opciones, opciones[1]);
+			if (res == 0) {
+				for (Producto producto : productos) {
+					if (producto.getCantidad() == 0) {
+						this.vaciarTabla();
+						getProductoDao().remove(producto);
+						setProductos(getProductoDao().getAll());
+						pasarATablas(getProductos());
+					}
+				}
+				getVistaProductos().getBtnModificar().setEnabled(false);
+				getVistaProductos().getBtnEliminar().setEnabled(false);
+			}
 		}
 
 		if (e.getSource().equals(getVistaProductos().getBtnModificar())) {
@@ -168,7 +204,9 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 					pasarATablas(getProductos());
 					getVistaProductos().getBtnModificar().setEnabled(false);
 					getVistaProductos().getBtnEliminar().setEnabled(false);
-					JOptionPane.showMessageDialog(vistaProductos, "El producto se modificó con éxito.");
+					JOptionPane.showMessageDialog(vistaProductos, "El producto se modificó con éxito", "Aceptado", 0,
+							this.ajustarImagen(new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Correcto.png"))
+									.getImage(), 44, 44));
 				}
 			}
 
@@ -196,7 +234,10 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 
 				getVistaProductos().getBtnModificar().setEnabled(false);
 				getVistaProductos().getBtnEliminar().setEnabled(false);
-				JOptionPane.showMessageDialog(vistaProductos, "El producto se eliminó con éxito.");
+				JOptionPane.showMessageDialog(vistaProductos, "El producto se eliminó con éxito", "Aceptado", 0,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Correcto.png")).getImage(),
+								44, 44));
 			}
 
 		}
@@ -206,7 +247,10 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 				Reportes.reportesProductos();
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vistaProductos,
-						"Hubo un problema con la base de datos y no se pudo generar el reporte.");
+						"Hubo un problema con la base de datos y no se pudo generar el reporte.", "Error", -1,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/ErrorBd.png")).getImage(), 44,
+								44));
 				e1.printStackTrace();
 			}
 
@@ -218,7 +262,6 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 			} else {
 				this.vaciarTabla();
 				this.buscarProducto();
-
 			}
 		}
 		if (e.getSource().equals(getVistaProductos().getBtnBuscarProveedor())) {
@@ -232,13 +275,11 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (this.getVistaProductos().getTextFieldCantidad().isFocusOwner()) {
-
 			char caracter = e.getKeyChar();
 			// Verificar si la tecla pulsada no es un digito
 			if (((caracter < '0') || (caracter > '9'))) {
 				e.consume(); // ignorar el evento de teclado
 			}
-
 		}
 		if (this.getVistaProductos().getTextFieldPrecio().isFocusOwner()) {
 			char caracter = e.getKeyChar();
@@ -246,9 +287,7 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 			if (((caracter < '0') || (caracter > '9')) && (caracter != '.')) {
 				e.consume(); // ignorar el evento de teclado
 			}
-
 		}
-
 	}
 
 	@Override
@@ -256,28 +295,22 @@ public class ControladorProductos implements ActionListener, FocusListener, KeyL
 		if (e.getSource().equals(getVistaProductos().getTextFieldBuscar())) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				getVistaProductos().getBtnBuscarProducto().doClick();
-
 			}
 		}
-
 	}
 
 	@Override
 	public void focusGained(FocusEvent e) {
 		if (e.getSource().equals(getVistaProductos().getTable())) {
-
 			this.getVistaProductos().getBtnModificar().setEnabled(true);
 			this.getVistaProductos().getBtnEliminar().setEnabled(true);
-
 		}
-
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource().equals(getVistaProductos().getTable()))
 			deTablaACampos(getVistaProductos());
-
 	}
 
 	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {

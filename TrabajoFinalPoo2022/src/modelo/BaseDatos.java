@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import vista.VistaPrincipal;
 
 public class BaseDatos {
 	private Connection conexion;
@@ -22,8 +26,10 @@ public class BaseDatos {
 			this.setConexion(DriverManager.getConnection(url, usuario, clave));
 		} catch (SQLException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error al intentar conectarse con la base de datos.",
-					"Algo ha ocurrido.", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error al intentar conectarse con la base de datos.", "Error", -1,
+					this.ajustarImagen(
+							new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/ErrorBd.png")).getImage(), 44,
+							44));
 		}
 	}
 
@@ -97,6 +103,11 @@ public class BaseDatos {
 		}
 		return false;
 
+	}
+
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
+		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
+		return imagen;
 	}
 
 	public Connection getConexion() {

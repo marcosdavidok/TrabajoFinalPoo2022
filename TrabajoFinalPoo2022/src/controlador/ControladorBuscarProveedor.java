@@ -88,7 +88,7 @@ public class ControladorBuscarProveedor implements ActionListener, WindowListene
 				this.pasarACampos(proveedor);
 				this.getVistaBuscarProveedor().dispose();
 			} catch (Exception e2) {
-				JOptionPane.showMessageDialog(getVistaBuscarProveedor(), "Seleccione un proveedor");
+				JOptionPane.showMessageDialog(getVistaBuscarProveedor(), "Seleccione un proveedor","Atención",2);
 				e2.printStackTrace();
 			}
 		}

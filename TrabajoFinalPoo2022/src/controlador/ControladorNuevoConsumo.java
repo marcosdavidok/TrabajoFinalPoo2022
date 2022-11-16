@@ -69,7 +69,10 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 
 		if (result > 0) {
 			this.generarDetalleConsumo(result);
-			JOptionPane.showMessageDialog(vistaNuevoConsumo, "El consumo se registro con éxito.");
+			JOptionPane.showMessageDialog(vistaNuevoConsumo, "El consumo se registro con éxito.", "Aceptado", -1,
+					this.ajustarImagen(
+							new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Correcto.png")).getImage(), 44,
+							44));
 			this.limpiarCampos();
 			this.BorrarTodos();
 			this.getVistaNuevoConsumo().getBtnAgregar().setEnabled(false);
@@ -90,11 +93,16 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 				}
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(vistaNuevoConsumo,
-						"Hubo un problema con la base de datos y no se pudo generar el detalle");
+						"Hubo un problema con la base de datos y no se pudo generar el detalle.", "Error", -1,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/ErrorBd.png")).getImage(), 44,
+								44));
 				e.printStackTrace();
 			}
 		} else {
-			JOptionPane.showMessageDialog(vistaNuevoConsumo, "El consumo no se pudo registrar.");
+			JOptionPane.showMessageDialog(vistaNuevoConsumo, "El consumo no se pudo registrar.", "Error", -1,
+					this.ajustarImagen(
+							new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Error.png")).getImage(), 44, 44));
 		}
 	}
 
@@ -154,14 +162,15 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 					|| (getVistaNuevoConsumo().getTextFieldCantidad().getText().isEmpty())
 					|| ((Double.valueOf(getVistaNuevoConsumo().getTextFieldPrecio().getText())) <= 0.0)
 					|| ((Integer.valueOf(getVistaNuevoConsumo().getTextFieldCantidad().getText())) < 1)) {
-				JOptionPane.showMessageDialog(vistaNuevoConsumo, "Ingrese todos los datos.");
+				JOptionPane.showMessageDialog(vistaNuevoConsumo, "Ingrese todos los datos.", "Atención", 2);
 				getVistaNuevoConsumo().getTextFieldCantidad().requestFocus();
 				return false;
 
 			} else {
 				if ((Integer.valueOf(getVistaNuevoConsumo().getTextFieldCantidad().getText())) > (Integer
 						.valueOf(getVistaNuevoConsumo().getTextFieldStock().getText()))) {
-					JOptionPane.showMessageDialog(vistaNuevoConsumo, "La cantidad no puede superar el stock actual");
+					JOptionPane.showMessageDialog(vistaNuevoConsumo, "La cantidad no puede superar el stock actual",
+							"Atención", 2);
 					return false;
 				} else {
 					return true;
@@ -198,7 +207,7 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 			for (int i = 0; i < getVistaNuevoConsumo().getTable().getRowCount(); i++) {
 				if (getVistaNuevoConsumo().getTable().getValueAt(i, 0)
 						.equals(getVistaNuevoConsumo().getTextFieldCodigo().getText())) {
-					JOptionPane.showMessageDialog(getVistaNuevoConsumo(), "Producto ya ingresado.");
+					JOptionPane.showMessageDialog(getVistaNuevoConsumo(), "Producto ya ingresado.", "Atención", 2);
 					getVistaNuevoConsumo().getTable().requestFocus();
 					getVistaNuevoConsumo().getTable().setRowSelectionInterval(i, i);
 					return true;
@@ -292,7 +301,7 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 				try {
 					this.pasarACampos();
 				} catch (NullPointerException e1) {
-					JOptionPane.showMessageDialog(getVistaNuevoConsumo(), "Producto no encontrado");
+					JOptionPane.showMessageDialog(getVistaNuevoConsumo(), "Producto no encontrado.", "Atención", 2);
 				}
 			}
 		}
@@ -301,9 +310,7 @@ public class ControladorNuevoConsumo implements ActionListener, FocusListener, K
 	@Override
 	public void focusGained(FocusEvent e) {
 		if (e.getSource().equals(getVistaNuevoConsumo().getTable())) {
-
 			this.getVistaNuevoConsumo().getBtnBorrar().setEnabled(true);
-
 		}
 	}
 

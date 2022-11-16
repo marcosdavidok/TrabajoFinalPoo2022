@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,12 +12,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import modelo.Consumo;
 import modelo.ConsumoDAO;
 import modelo.Reportes;
 import vista.VistaGastos;
+import vista.VistaPrincipal;
 
 public class ControladorGastos implements ActionListener, KeyListener, MouseListener {
 
@@ -35,7 +38,6 @@ public class ControladorGastos implements ActionListener, KeyListener, MouseList
 	protected void pasarATabla() {
 		vaciarTabla();
 		setConsumos(getConsumoDao().getAll());
-
 		for (Consumo consumo : getConsumos()) {
 			getVistaGastos().getModeloTabla().addRow(obtenerConsumo(consumo));
 		}
@@ -49,7 +51,7 @@ public class ControladorGastos implements ActionListener, KeyListener, MouseList
 
 	private Object[] obtenerConsumo(Consumo consumo) {
 		Object[] fila = { Integer.valueOf(consumo.getId_consumo()), formatoFecha.format(consumo.getFecha_consumo()),
-				consumo.getNombreEncargado(), Double.valueOf(consumo.getTotal()) };
+				consumo.getNombreEncargado(), "$" +Double.valueOf(consumo.getTotal()) };
 		return fila;
 	}
 
@@ -101,7 +103,7 @@ public class ControladorGastos implements ActionListener, KeyListener, MouseList
 				Reportes.detalleDeConsumo(Integer.valueOf(getVistaGastos().getTable()
 						.getValueAt(getVistaGastos().getTable().getSelectedRow(), 0).toString()));
 			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(vistaGastos, "Seleccione algún consumo.");
+				JOptionPane.showMessageDialog(vistaGastos, "Seleccione algún consumo.", "Atención", 2);
 			}
 			this.getVistaGastos().getBtnImprimir().setEnabled(false);
 		}
@@ -111,7 +113,10 @@ public class ControladorGastos implements ActionListener, KeyListener, MouseList
 				Reportes.listarGastos();
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vistaGastos,
-						"Hubo un problema con la base de datos y no se pudo generar el reporte.");
+						"Hubo un problema con la base de datos y no se pudo generar el reporte.", "Error", -1,
+						this.ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/ErrorBd.png")).getImage(), 44,
+								44));
 				e1.printStackTrace();
 			}
 		}
@@ -130,8 +135,14 @@ public class ControladorGastos implements ActionListener, KeyListener, MouseList
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource().equals(this.getVistaGastos().getTable())) {
+			
 			this.getVistaGastos().getBtnImprimir().setEnabled(true);
 		}
+	}
+
+	private ImageIcon ajustarImagen(Image img, int ancho, int alto) {
+		ImageIcon imagen = new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
+		return imagen;
 	}
 
 	@Override

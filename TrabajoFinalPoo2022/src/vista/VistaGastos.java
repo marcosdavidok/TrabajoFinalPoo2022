@@ -37,7 +37,7 @@ public class VistaGastos extends JPanel {
 		this.setControladorVentas(controladorGastos);
 
 		setBackground(new Color(145, 139, 173));
-		setBounds(0, 0, 860, 444);
+		setBounds(0, 0, 880, 444);
 
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -51,7 +51,7 @@ public class VistaGastos extends JPanel {
 		textFieldBuscar.setColumns(10);
 		textFieldBuscar.addKeyListener(getControladorVentas());
 
-		btnImprimir = new JButton("IMPRIMIR");
+		btnImprimir = new JButton("VER DETALLE");
 		btnImprimir.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		btnImprimir.addActionListener(getControladorVentas());
 		ImageIcon imgBtnImprimir = this.ajustarImagen(
@@ -78,32 +78,47 @@ public class VistaGastos extends JPanel {
 		comboBox.setModel(new DefaultComboBoxModel<>(nombres));
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addGap(31)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup().addComponent(lblBuscarPor).addGap(18)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-						.addComponent(textFieldBuscar, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
-				.addGap(18).addComponent(btnBuscar).addGap(76)
-				.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE).addGap(85)
-				.addComponent(btnInformeGastos, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE).addGap(32))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 843, Short.MAX_VALUE).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(22)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblBuscarPor).addComponent(
-						comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(18)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(31)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblBuscarPor)
+							.addGap(18)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldBuscar, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(btnBuscar)
+					.addGap(76)
+					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addGap(60)
+					.addComponent(btnInformeGastos, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+					.addGap(32))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(22)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBuscarPor)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnInformeGastos, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-				.addGap(18).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-				.addContainerGap()));
+					.addGap(18)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 
-		String header[] = { "Nro Gasto", "Fecha", "Encargado", "Total" };
+		String header[] = { "Nro Gasto", "Fecha", "Encargado", "Total gastado" };
 		this.setModeloTabla(new DefaultTableModel(null, header));
 		table = new JTable(this.getModeloTabla());
 		table.setAutoCreateRowSorter(true);

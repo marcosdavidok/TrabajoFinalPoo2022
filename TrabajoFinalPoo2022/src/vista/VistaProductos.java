@@ -25,7 +25,7 @@ public class VistaProductos extends JPanel {
 	protected JTable table;
 	protected DefaultTableModel ModeloTabla;
 	private JButton btnGuardar, btnLimpiar, btnModificar, btnEliminar, btnBuscarProveedor, btnBuscarProducto,
-			btnImprimir;
+			btnImprimir, btnEliminarSinStock;
 	protected JTextField textFieldCantidad, textFieldPrecio, textFieldNombre, textFieldBuscar, textFieldProveedor;
 	private JLabel lblNombre, lblCantidad, lblPrecio, lblProveedor;
 
@@ -35,7 +35,7 @@ public class VistaProductos extends JPanel {
 		this.setControladorProductos(controladorProductos);
 
 		setBackground(new Color(145, 139, 173));
-		setBounds(0, 0, 860, 444);
+		setBounds(0, 0, 880, 444);
 		JScrollPane scrollPane = new JScrollPane();
 
 		///////////////////////////////////////// BOTONES/////////////////////////////////////////
@@ -67,6 +67,15 @@ public class VistaProductos extends JPanel {
 		ImageIcon imgBtnEliminar = this.ajustarImagen(
 				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Eliminar.png")).getImage(), 20, 20);
 		btnEliminar.setIcon(imgBtnEliminar);
+
+		btnEliminarSinStock = new JButton("ELIMINAR VACIOS");
+		btnEliminarSinStock.setToolTipText("Se eliminaran los productos en los que no haya stock.");
+		btnEliminar.setBackground(UIManager.getColor("Button.background"));
+		btnEliminarSinStock.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
+		btnEliminarSinStock.addActionListener(getControladorProductos());
+		ImageIcon imgBtnEliminarSinStock = this.ajustarImagen(
+				new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Vacio.png")).getImage(), 20, 20);
+		btnEliminarSinStock.setIcon(imgBtnEliminarSinStock);
 
 		btnBuscarProveedor = new JButton("BUSCAR");
 		btnBuscarProveedor.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -119,92 +128,86 @@ public class VistaProductos extends JPanel {
 		textFieldProveedor.setEnabled(false);
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap()
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup().addComponent(btnGuardar)
-												.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLimpiar,
-														GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnGuardar)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblCantidad, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textFieldCantidad, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnModificar)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnEliminar)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnEliminarSinStock, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+									.addGap(8))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 119,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 89,
-																GroupLayout.PREFERRED_SIZE))
-												.addPreferredGap(ComponentPlacement.UNRELATED)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblCantidad, GroupLayout.PREFERRED_SIZE, 85,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(textFieldCantidad, GroupLayout.PREFERRED_SIZE,
-																119, GroupLayout.PREFERRED_SIZE))))
-								.addPreferredGap(ComponentPlacement.UNRELATED).addGroup(groupLayout.createParallelGroup(
-										Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup().addComponent(btnModificar)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnEliminar))
-										.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
-												.createParallelGroup(Alignment.LEADING)
-												.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, 119,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														lblPrecio, GroupLayout.PREFERRED_SIZE, 88,
-														GroupLayout.PREFERRED_SIZE))
-												.addGap(18)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addGroup(groupLayout.createSequentialGroup()
-																.addComponent(textFieldProveedor,
-																		GroupLayout.PREFERRED_SIZE, 105,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.RELATED)
-																.addComponent(btnBuscarProveedor))
-														.addComponent(lblProveedor, GroupLayout.PREFERRED_SIZE, 93,
-																GroupLayout.PREFERRED_SIZE))))
-								.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-								.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-								.addGap(78))
+											.addComponent(textFieldProveedor, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(btnBuscarProveedor))
+										.addComponent(lblProveedor, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)))))
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, 244,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnBuscarProducto, GroupLayout.PREFERRED_SIZE, 124,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-						.addGroup(Alignment.TRAILING,
-								groupLayout.createSequentialGroup()
-										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
-										.addContainerGap()))));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap()
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+							.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnBuscarProducto, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscarProducto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-				.addGap(18)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCantidad, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblProveedor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldProveedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldProveedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscarProveedor, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnGuardar)
 						.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-				.addGap(15).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(6)));
+						.addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnEliminarSinStock, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addGap(15)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+					.addGap(6))
+		);
 
 		String encabezado[] = { "Codigo", "Nombre", "Cantidad", "Precio", "CUIT Proveedor" };
 		this.setModeloTabla(new DefaultTableModel(null, encabezado));
@@ -283,6 +286,14 @@ public class VistaProductos extends JPanel {
 
 	public void setBtnEliminar(JButton btnEliminar) {
 		this.btnEliminar = btnEliminar;
+	}
+
+	public JButton getBtnEliminarSinStock() {
+		return btnEliminarSinStock;
+	}
+
+	public void setBtnEliminarSinStock(JButton btnEliminarSinStock) {
+		this.btnEliminarSinStock = btnEliminarSinStock;
 	}
 
 	public ControladorProductos getControladorProductos() {

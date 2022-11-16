@@ -32,6 +32,7 @@ public class VistaNuevoUsuario extends JFrame {
 	private JComboBox<String> comboBox;
 	public static VistaNuevoUsuario vistaNU;
 	private JLabel lblOjo;
+	private JLabel lblOjoConfirmar;
 
 	public VistaNuevoUsuario(ControladorVistaNuevoUsuario controladorU) {
 		setControladorU(controladorU);
@@ -131,12 +132,18 @@ public class VistaNuevoUsuario extends JFrame {
 		lblTipoDeUsuario.setBounds(73, 363, 131, 14);
 		contentPane.add(lblTipoDeUsuario);
 		lblTipoDeUsuario.setFont(new Font("Dialog", Font.BOLD, 16));
-		
+
 		lblOjo = new JLabel("");
 		lblOjo.setIcon(imgOjo);
 		lblOjo.setBounds(401, 262, 29, 14);
 		lblOjo.addMouseListener(getControladorU());
 		contentPane.add(lblOjo);
+
+		lblOjoConfirmar = new JLabel("");
+		lblOjoConfirmar.setIcon(imgOjo);
+		lblOjoConfirmar.setBounds(401, 309, 29, 14);
+		contentPane.add(lblOjoConfirmar);
+		lblOjoConfirmar.addMouseListener(getControladorU());
 		this.addWindowListener(getControladorU());
 
 	}
@@ -208,6 +215,14 @@ public class VistaNuevoUsuario extends JFrame {
 
 	public void setLblOjo(JLabel lblOjo) {
 		this.lblOjo = lblOjo;
+	}
+
+	public JLabel getLblOjoConfirmar() {
+		return lblOjoConfirmar;
+	}
+
+	public void setLblOjoConfirmar(JLabel lblOjoConfirmar) {
+		this.lblOjoConfirmar = lblOjoConfirmar;
 	}
 
 }

@@ -23,6 +23,7 @@ import modelo.Usuario;
 import modelo.UsuarioDAO;
 import vista.VistaInicial;
 import vista.VistaNuevoUsuario;
+import vista.VistaPrincipal;
 
 public class ControladorVistaNuevoUsuario
 		implements KeyListener, ActionListener, FocusListener, WindowListener, MouseListener {
@@ -42,11 +43,13 @@ public class ControladorVistaNuevoUsuario
 		if (getVistaNuevoUsuario().getTextFieldUsuario().getText().isEmpty()
 				|| getVistaNuevoUsuario().getPasswordFieldContraseña().getText().isEmpty()
 				|| getVistaNuevoUsuario().getPasswordFieldConfirmar().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(vistaNuevoUsuario, "Por favor, ingrese todos los datos");
+			JOptionPane.showMessageDialog(vistaNuevoUsuario, "Por favor, ingrese todos los datos.", "Atención", 2);
 		} else {
 			int tipo = 0;
 			switch (getVistaNuevoUsuario().getComboBox().getSelectedItem().toString()) {
-
+			case "Administrador":
+				tipo = 1;
+				break;
 			case "Jefe de barra":
 				tipo = 2;
 				break;
@@ -63,7 +66,10 @@ public class ControladorVistaNuevoUsuario
 
 			getUsuarioDao().insert(usuarioNuevo);
 			if (Integer.SIZE > 0) {
-				JOptionPane.showMessageDialog(vistaNuevoUsuario, "Registrado con éxito!");
+				JOptionPane.showMessageDialog(vistaNuevoUsuario, "Registrado con éxito!", "Aceptado", -1,
+						getVistaNuevoUsuario().ajustarImagen(
+								new ImageIcon(VistaPrincipal.class.getResource("/Imagenes/Correcto.png")).getImage(),
+								44, 44));
 
 			}
 		}
@@ -76,12 +82,13 @@ public class ControladorVistaNuevoUsuario
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(getVistaNuevoUsuario().getBtnRegistrar())) {
 			if (getVistaNuevoUsuario().getPasswordFieldContraseña().getPassword().length < 6) {
-				JOptionPane.showMessageDialog(vistaNuevoUsuario, "La contraseña debe tener por lo menos 6 carateres");
+				JOptionPane.showMessageDialog(vistaNuevoUsuario, "La contraseña debe tener por lo menos 6 carateres.",
+						"Atención", 2);
 				getVistaNuevoUsuario().getPasswordFieldContraseña().requestFocus();
 				getVistaNuevoUsuario().getPasswordFieldConfirmar().setText(null);
 			} else if (!getVistaNuevoUsuario().getPasswordFieldConfirmar().getText()
 					.equals(getVistaNuevoUsuario().getPasswordFieldContraseña().getText())) {
-				JOptionPane.showMessageDialog(vistaNuevoUsuario, "Las contraseñas no coinciden");
+				JOptionPane.showMessageDialog(vistaNuevoUsuario, "Las contraseñas no coinciden.", "Atención", 2);
 				getVistaNuevoUsuario().getPasswordFieldContraseña().requestFocus();
 				getVistaNuevoUsuario().getPasswordFieldConfirmar().setText(null);
 			} else {
@@ -100,7 +107,7 @@ public class ControladorVistaNuevoUsuario
 			for (Usuario usuario : getUsuarios()) {
 				if (getVistaNuevoUsuario().getTextFieldUsuario().getText().equals(usuario.getUsuario())) {
 					JOptionPane.showMessageDialog(vistaNuevoUsuario,
-							"Ya existe ese usuario, por favor elija otro nombre");
+							"Ya existe ese usuario, por favor elija otro nombre.", "Atención", 2);
 					getVistaNuevoUsuario().getTextFieldUsuario().requestFocus();
 				}
 			}
@@ -111,6 +118,7 @@ public class ControladorVistaNuevoUsuario
 	public void windowActivated(WindowEvent e) {
 		if (e.getSource().equals(getVistaNuevoUsuario())) {
 			Vector<String> nombres = new Vector<String>();
+			nombres.add("Administrador");
 			nombres.add("Jefe de barra");
 			nombres.add("Abastecimiento");
 			getVistaNuevoUsuario().getComboBox().setModel(new DefaultComboBoxModel<>(nombres));
@@ -134,6 +142,20 @@ public class ControladorVistaNuevoUsuario
 				getVistaNuevoUsuario().getLblOjo().setIcon(imgOjo);
 			}
 		}
+		if (e.getSource().equals(getVistaNuevoUsuario().getLblOjoConfirmar())) {
+			if (getVistaNuevoUsuario().getPasswordFieldConfirmar().getEchoChar() == '●') {
+				getVistaNuevoUsuario().getPasswordFieldConfirmar().setEchoChar((char) 0);
+				ImageIcon imgOjo = getVistaNuevoUsuario().ajustarImagen(
+						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoAbierto.png")).getImage(), 20, 20);
+				getVistaNuevoUsuario().getLblOjoConfirmar().setIcon(imgOjo);
+			} else {
+				getVistaNuevoUsuario().getPasswordFieldConfirmar().setEchoChar('●');
+				ImageIcon imgOjo = getVistaNuevoUsuario().ajustarImagen(
+						new ImageIcon(VistaInicial.class.getResource("/Imagenes/ojoCerrado.png")).getImage(), 20, 20);
+				getVistaNuevoUsuario().getLblOjoConfirmar().setIcon(imgOjo);
+			}
+		}
+
 	}
 
 	@Override

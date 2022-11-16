@@ -99,7 +99,7 @@ public class ControladorBuscarProducto implements ActionListener, WindowListener
 				this.pasarACampos(producto);
 				getVistaBuscarProducto().dispose();
 			} catch (Exception e2) {
-				JOptionPane.showMessageDialog(getVistaBuscarProducto(), "Seleccione un producto");
+				JOptionPane.showMessageDialog(getVistaBuscarProducto(), "Seleccione un producto","Atención",2);
 			}
 		}
 	}

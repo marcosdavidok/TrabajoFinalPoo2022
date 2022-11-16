@@ -36,7 +36,7 @@ public class VistaPrincipal extends JFrame {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VistaInicial.class.getResource("/Imagenes/DrinkCounterLogo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1064, 655);
+		setBounds(100, 100, 1085, 655);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(188, 180, 224));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

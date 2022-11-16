@@ -42,7 +42,6 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 		this.setControladorGastos(new ControladorGastos());
 		this.getVistaPrincipal().getPanelVistas().add(getControladorGastos().getVistaGastos(), 0, 6);
 		this.getControladorGastos().getVistaGastos().setVisible(false);
-
 	}
 
 	@Override
@@ -121,7 +120,6 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 	@Override
 	public void windowStateChanged(WindowEvent e) {
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.MAXIMIZED_BOTH) {
-
 			getControladorConfig().getVistaConfig().setBounds(0, 0, 1200, 700);
 			getControladorNuevoConsumo().getVistaNuevoConsumo().setBounds(0, 0, 1200, 700);
 			getControladorProductos().getVistaProductos().setBounds(0, 0, 1200, 700);
@@ -130,12 +128,11 @@ public class ControladorVistaPrincipal implements ActionListener, WindowStateLis
 
 		}
 		if (getVistaPrincipal().getExtendedState() == VistaPrincipal.NORMAL) {
-
-			getControladorConfig().getVistaConfig().setBounds(0, 0, 858, 444);
-			getControladorNuevoConsumo().getVistaNuevoConsumo().setBounds(0, 0, 858, 444);
-			getControladorProductos().getVistaProductos().setBounds(0, 0, 858, 444);
-			getControladorProveedores().getVistaProveedores().setBounds(0, 0, 858, 444);
-			getControladorGastos().getVistaGastos().setBounds(0, 0, 858, 444);
+			getControladorConfig().getVistaConfig().setBounds(0, 0, 880, 444);
+			getControladorNuevoConsumo().getVistaNuevoConsumo().setBounds(0, 0, 880, 444);
+			getControladorProductos().getVistaProductos().setBounds(0, 0, 880, 444);
+			getControladorProveedores().getVistaProveedores().setBounds(0, 0, 880, 444);
+			getControladorGastos().getVistaGastos().setBounds(0, 0, 880, 444);
 
 		}
 
